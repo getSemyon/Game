@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfgs3e17kybkr"]
+
+[ext_resource type="Script" path="res://scripts/player_script/player_interface.gd" id="1_guycr"]
+
+[node name="PlayerInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_guycr")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_right = 221.0
+offset_bottom = 77.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Heal" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HealText" type="Label" parent="PanelContainer/VBoxContainer/Heal"]
+layout_mode = 2
+text = "Heal"
+
+[node name="HealParametr" type="Label" parent="PanelContainer/VBoxContainer/Heal"]
+layout_mode = 2
+text = "0
+"
+
+[node name="Armor" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ArmorText" type="Label" parent="PanelContainer/VBoxContainer/Armor"]
+layout_mode = 2
+text = "Armor"
+
+[node name="ArmorParametr" type="Label" parent="PanelContainer/VBoxContainer/Armor"]
+layout_mode = 2
+text = "0"
+
+[node name="Wepon" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="WeponParametr" type="Label" parent="PanelContainer/VBoxContainer/Wepon"]
+layout_mode = 2
+text = "Type Wepon"
+
+[node name="WeponName" type="Label" parent="PanelContainer/VBoxContainer/Wepon"]
+layout_mode = 2
+text = "Wepon Name"

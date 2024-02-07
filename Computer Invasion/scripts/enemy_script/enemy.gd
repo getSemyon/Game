@@ -1,4 +1,4 @@
-extends Node3D
+extends CharacterBody3D
 class_name Enemy
 
 # Enum state enemy
@@ -38,15 +38,13 @@ func _ready():
 	time_to_next_attack = time_to_next_attack_export
 	
 	attack_periude = time_to_next_attack
-	print(str(attack_periude))
 
-func _physics_process(delta): 
+func _process(delta): 
 	if state == ALERT:
 		if attack_periude > 0.0:
 			attack_periude -= delta
 		else:
 			attack(target)
-			print(str(atan2(-target.position.x, -target.position.z)))
 			
 		var target_position = target.transform.origin
 		var new_transform = transform.looking_at(target_position, Vector3.UP)
@@ -65,6 +63,7 @@ func take_damege(damege_playr : int):
 
 func attack(player : Player):
 	player.take_damege(damage)
+
 	reset_time_attack()
 
 func reset_time_attack():
@@ -72,3 +71,13 @@ func reset_time_attack():
 
 func die():
 	queue_free()
+	
+func _on_target_area_body_entered(body):
+	if body is Player:
+		state = ALERT
+		target = body
+
+func _on_target_area_body_exited(body):
+	if body is Player:
+		print("untarget")
+		sleep()

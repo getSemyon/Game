@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://hxjfc385bu7c"]
+
+[ext_resource type="PackedScene" uid="uid://cwuso0hklr22x" path="res://scen/Enemy_scen/bace_enemy.tscn" id="1_i7i05"]
+[ext_resource type="Script" path="res://scripts/enemy_script/enemy_shoter.gd" id="2_7efeq"]
+
+[node name="Enemy_shoter" instance=ExtResource("1_i7i05")]
+script = ExtResource("2_7efeq")
+
+[node name="MeshInstance3D2" parent="." index="4"]
+visible = false

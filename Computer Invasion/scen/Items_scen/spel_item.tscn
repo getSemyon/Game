@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmoq8x457iu4k"]
+
+[ext_resource type="PackedScene" uid="uid://mad3bmfrd3a6" path="res://scen/Items_scen/base_item.tscn" id="1_ellm1"]
+[ext_resource type="Script" path="res://scripts/Item/spel_item.gd" id="2_no0ed"]
+
+[node name="Spel_Item" instance=ExtResource("1_ellm1")]
+script = ExtResource("2_no0ed")
+spel_export = 0

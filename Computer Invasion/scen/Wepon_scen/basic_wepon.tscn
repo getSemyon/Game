@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://vu3ebdf1l8my"]
+
+[ext_resource type="Script" path="res://scripts/wepon_script/basic_wepon.gd" id="1_3sp7v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u7wo8"]
+size = Vector3(3, 1, 1)
+
+[node name="basic_wepon" type="Node3D"]
+script = ExtResource("1_3sp7v")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_u7wo8")
+skeleton = NodePath("../Marker3D")

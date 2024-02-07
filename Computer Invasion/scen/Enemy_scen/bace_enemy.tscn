@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwuso0hklr22x"]
+
+[ext_resource type="Script" path="res://scripts/enemy_script/enemy.gd" id="1_2nbqk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ucak"]
+albedo_color = Color(0.803922, 0.14902, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_su3r2"]
+material = SubResource("StandardMaterial3D_2ucak")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xv0oh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_k442a"]
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_2nbqk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_su3r2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_xv0oh")
+
+[node name="TargetArea" type="Area3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TargetArea"]
+shape = SubResource("SphereShape3D_xv0oh")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -1)
+mesh = SubResource("BoxMesh_k442a")
+
+[connection signal="body_entered" from="TargetArea" to="." method="_on_target_area_body_entered"]
+[connection signal="body_exited" from="TargetArea" to="." method="_on_target_area_body_exited"]
