@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5l66lexe8y11"]
+
+[ext_resource type="Script" path="res://scripts/menu_script/menu - settings.gd" id="1_gipnt"]
+[ext_resource type="PackedScene" uid="uid://dr1fio0lw4l8q" path="res://scen/Menu/menu.tscn" id="2_8ndvw"]
+[ext_resource type="PackedScene" uid="uid://sidsc1updrrd" path="res://scen/Menu/settings.tscn" id="3_x3kr5"]
+
+[node name="menu - settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gipnt")
+
+[node name="menu" parent="." instance=ExtResource("2_8ndvw")]
+layout_mode = 1
+
+[node name="Settings" parent="." instance=ExtResource("3_x3kr5")]
+layout_mode = 1
+
+[connection signal="settings_choce" from="menu" to="." method="_on_menu_settings_choce"]
+[connection signal="signal_presed" from="Settings" to="." method="_on_settings_signal_presed"]

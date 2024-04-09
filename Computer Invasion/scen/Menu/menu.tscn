@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr1fio0lw4l8q"]
+
+[ext_resource type="Script" path="res://scripts/menu_script/menu.gd" id="1_7877k"]
+[ext_resource type="Theme" uid="uid://r02ln6x3oqn2" path="res://shader/Theme_game.tres" id="1_ft6ae"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7877k")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="play" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_ft6ae")
+text = "Новая игра"
+
+[node name="continion" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ft6ae")
+text = "Продолжить"
+
+[node name="setings" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ft6ae")
+text = "Настройки"
+
+[node name="exit" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ft6ae")
+text = "Выход"
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/continion" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/setings" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/exit" to="." method="_on_button_4_pressed"]

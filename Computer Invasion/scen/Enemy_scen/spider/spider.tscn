@@ -1,0 +1,142 @@
+[gd_scene load_steps=5 format=3 uid="uid://nd2qgr6iuqj"]
+
+[ext_resource type="PackedScene" uid="uid://b24wp1j60jome" path="res://model/Spider.blend" id="2_n21gh"]
+[ext_resource type="Script" path="res://scripts/enemy_script/spider/Spider.gd" id="2_r4pux"]
+[ext_resource type="PackedScene" uid="uid://smjoynr2pxas" path="res://scen/Enemy_scen/spider/spider_leg.tscn" id="3_8deks"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tah6c"]
+radius = 20.0
+
+[node name="Spider" node_paths=PackedStringArray("fl_leg", "fr_leg", "bl_leg", "br_leg") instance=ExtResource("2_n21gh")]
+script = ExtResource("2_r4pux")
+fl_leg = NodePath("Spider_legs/Right/spider_leg")
+fr_leg = NodePath("Spider_legs/Right/spider_leg4")
+bl_leg = NodePath("Spider_legs/Left/spider_leg")
+br_leg = NodePath("Spider_legs/Left/spider_leg4")
+
+[node name="Spider_legs" type="Node3D" parent="Арматура_001" index="0"]
+
+[node name="Right" type="Node3D" parent="Арматура_001/Spider_legs" index="0"]
+
+[node name="spider_leg" parent="Арматура_001/Spider_legs/Right" index="0" instance=ExtResource("3_8deks")]
+transform = Transform3D(1, 7.10543e-15, 7.10543e-15, 1.3027e-15, 0.817145, -0.576432, -7.10543e-15, 0.576432, 0.817145, -1.58674, -1.29232, -0.4)
+
+[node name="Marker3D" parent="Арматура_001/Spider_legs/Right/spider_leg" index="1" node_paths=PackedStringArray("adjacent_target", "opposite_target")]
+adjacent_target = NodePath("../../../Left/spider_leg/Marker3D")
+opposite_target = NodePath("../../../Left/spider_leg2/Marker3D")
+
+[node name="spider_leg2" parent="Арматура_001/Spider_legs/Right" index="1" instance=ExtResource("3_8deks")]
+transform = Transform3D(1, 7.10543e-15, 7.10543e-15, 1.3027e-15, 0.817145, -0.576432, -7.10543e-15, 0.576432, 0.817145, -1.88674, -1.29232, -0.4)
+
+[node name="Marker3D" parent="Арматура_001/Spider_legs/Right/spider_leg2" index="1" node_paths=PackedStringArray("adjacent_target", "opposite_target")]
+adjacent_target = NodePath("../../../Left/spider_leg2/Marker3D")
+opposite_target = NodePath("../../../Left/spider_leg3/Marker3D")
+
+[node name="spider_leg3" parent="Арматура_001/Spider_legs/Right" index="2" instance=ExtResource("3_8deks")]
+transform = Transform3D(1, 7.10543e-15, 7.10543e-15, 1.3027e-15, 0.817145, -0.576432, -7.10543e-15, 0.576432, 0.817145, -2.18674, -1.29232, -0.4)
+
+[node name="Marker3D" parent="Арматура_001/Spider_legs/Right/spider_leg3" index="1" node_paths=PackedStringArray("adjacent_target", "opposite_target")]
+adjacent_target = NodePath("../../../Left/spider_leg3/Marker3D")
+opposite_target = NodePath("../../../Left/spider_leg4/Marker3D")
+
+[node name="spider_leg4" parent="Арматура_001/Spider_legs/Right" index="3" instance=ExtResource("3_8deks")]
+transform = Transform3D(1, 7.10543e-15, 7.10543e-15, 1.3027e-15, 0.817145, -0.576432, -7.10543e-15, 0.576432, 0.817145, -2.48674, -1.29232, -0.4)
+
+[node name="Marker3D" parent="Арматура_001/Spider_legs/Right/spider_leg4" index="1" node_paths=PackedStringArray("adjacent_target", "opposite_target")]
+adjacent_target = NodePath("../../../Left/spider_leg4/Marker3D")
+opposite_target = NodePath("../../../Left/spider_leg/Marker3D")
+
+[node name="Left" type="Node3D" parent="Арматура_001/Spider_legs" index="1"]
+
+[node name="spider_leg" parent="Арматура_001/Spider_legs/Left" index="0" instance=ExtResource("3_8deks")]
+transform = Transform3D(-1, -5.03933e-08, -7.14371e-08, 1.3027e-15, 0.817145, -0.576432, 8.74228e-08, -0.576432, -0.817145, -1.58674, -1.29232, 0.4)
+
+[node name="Marker3D" parent="Арматура_001/Spider_legs/Left/spider_leg" index="1" node_paths=PackedStringArray("adjacent_target", "opposite_target")]
+adjacent_target = NodePath("../../../Right/spider_leg/Marker3D")
+opposite_target = NodePath("../../../Right/spider_leg2/Marker3D")
+
+[node name="spider_leg2" parent="Арматура_001/Spider_legs/Left" index="1" instance=ExtResource("3_8deks")]
+transform = Transform3D(-1, -5.03933e-08, -7.14371e-08, 1.3027e-15, 0.817145, -0.576432, 8.74228e-08, -0.576432, -0.817145, -1.88674, -1.29232, 0.4)
+
+[node name="Marker3D" parent="Арматура_001/Spider_legs/Left/spider_leg2" index="1" node_paths=PackedStringArray("adjacent_target", "opposite_target")]
+adjacent_target = NodePath("../../../Right/spider_leg2/Marker3D")
+opposite_target = NodePath("../../../Right/spider_leg3/Marker3D")
+
+[node name="spider_leg3" parent="Арматура_001/Spider_legs/Left" index="2" instance=ExtResource("3_8deks")]
+transform = Transform3D(-1, -5.03933e-08, -7.14371e-08, 1.3027e-15, 0.817145, -0.576432, 8.74228e-08, -0.576432, -0.817145, -2.18674, -1.29232, 0.4)
+
+[node name="Marker3D" parent="Арматура_001/Spider_legs/Left/spider_leg3" index="1" node_paths=PackedStringArray("adjacent_target", "opposite_target")]
+adjacent_target = NodePath("../../../Right/spider_leg3/Marker3D")
+opposite_target = NodePath("../../../Right/spider_leg4/Marker3D")
+
+[node name="spider_leg4" parent="Арматура_001/Spider_legs/Left" index="3" instance=ExtResource("3_8deks")]
+transform = Transform3D(-1, -5.03933e-08, -7.14371e-08, 1.3027e-15, 0.817145, -0.576432, 8.74228e-08, -0.576432, -0.817145, -2.48674, -1.29232, 0.4)
+
+[node name="Marker3D" parent="Арматура_001/Spider_legs/Left/spider_leg4" index="1" node_paths=PackedStringArray("adjacent_target", "opposite_target")]
+adjacent_target = NodePath("../../../Right/spider_leg4/Marker3D")
+opposite_target = NodePath("../../../Right/spider_leg/Marker3D")
+
+[node name="Spider_legs" type="Node3D" parent="." index="1"]
+
+[node name="Right" type="Node3D" parent="Spider_legs" index="0"]
+
+[node name="spider_leg" parent="Spider_legs/Right" index="0" node_paths=PackedStringArray("adjacent_target", "opposite_target") instance=ExtResource("3_8deks")]
+transform = Transform3D(1, 7.10543e-15, 7.10543e-15, 1.3027e-15, 0.817145, -0.576432, -7.10543e-15, 0.576432, 0.817145, -1.58674, -1.29232, -0.4)
+adjacent_target = NodePath("../../Left/spider_leg")
+opposite_target = NodePath("../../Left/spider_leg2")
+
+[node name="spider_leg2" parent="Spider_legs/Right" index="1" node_paths=PackedStringArray("adjacent_target", "opposite_target") instance=ExtResource("3_8deks")]
+transform = Transform3D(1, 7.10543e-15, 7.10543e-15, 1.3027e-15, 0.817145, -0.576432, -7.10543e-15, 0.576432, 0.817145, -1.88674, -1.29232, -0.4)
+adjacent_target = NodePath("../../Left/spider_leg2")
+opposite_target = NodePath("../../Left/spider_leg3")
+
+[node name="spider_leg3" parent="Spider_legs/Right" index="2" node_paths=PackedStringArray("adjacent_target", "opposite_target") instance=ExtResource("3_8deks")]
+transform = Transform3D(1, 7.10543e-15, 7.10543e-15, 1.3027e-15, 0.817145, -0.576432, -7.10543e-15, 0.576432, 0.817145, -2.18674, -1.29232, -0.4)
+adjacent_target = NodePath("../../Left/spider_leg3")
+opposite_target = NodePath("../../Left/spider_leg4")
+
+[node name="spider_leg4" parent="Spider_legs/Right" index="3" node_paths=PackedStringArray("adjacent_target", "opposite_target") instance=ExtResource("3_8deks")]
+transform = Transform3D(1, 7.10543e-15, 7.10543e-15, 1.3027e-15, 0.817145, -0.576432, -7.10543e-15, 0.576432, 0.817145, -2.48674, -1.29232, -0.4)
+adjacent_target = NodePath("../../Left/spider_leg4")
+opposite_target = NodePath("../../Left/spider_leg")
+
+[node name="Left" type="Node3D" parent="Spider_legs" index="1"]
+
+[node name="spider_leg" parent="Spider_legs/Left" index="0" node_paths=PackedStringArray("adjacent_target", "opposite_target") instance=ExtResource("3_8deks")]
+transform = Transform3D(-1, -5.03933e-08, -7.14371e-08, 1.3027e-15, 0.817145, -0.576432, 8.74228e-08, -0.576432, -0.817145, -1.58674, -1.29232, 0.4)
+adjacent_target = NodePath("../../Right/spider_leg")
+opposite_target = NodePath("../../Right/spider_leg4")
+
+[node name="spider_leg2" parent="Spider_legs/Left" index="1" node_paths=PackedStringArray("adjacent_target", "opposite_target") instance=ExtResource("3_8deks")]
+transform = Transform3D(-1, -5.03933e-08, -7.14371e-08, 1.3027e-15, 0.817145, -0.576432, 8.74228e-08, -0.576432, -0.817145, -1.88674, -1.29232, 0.4)
+adjacent_target = NodePath("../../Right/spider_leg2")
+opposite_target = NodePath("../../Right/spider_leg3")
+
+[node name="spider_leg3" parent="Spider_legs/Left" index="2" node_paths=PackedStringArray("adjacent_target", "opposite_target") instance=ExtResource("3_8deks")]
+transform = Transform3D(-1, -5.03933e-08, -7.14371e-08, 1.3027e-15, 0.817145, -0.576432, 8.74228e-08, -0.576432, -0.817145, -2.18674, -1.29232, 0.4)
+adjacent_target = NodePath("../../Right/spider_leg3")
+opposite_target = NodePath("../../Right/spider_leg4")
+
+[node name="spider_leg4" parent="Spider_legs/Left" index="3" node_paths=PackedStringArray("adjacent_target", "opposite_target") instance=ExtResource("3_8deks")]
+transform = Transform3D(-1, -5.03933e-08, -7.14371e-08, 1.3027e-15, 0.817145, -0.576432, 8.74228e-08, -0.576432, -0.817145, -2.48674, -1.29232, 0.4)
+adjacent_target = NodePath("../../Right/spider_leg4")
+opposite_target = NodePath("../../Right/spider_leg")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+shape = SubResource("SphereShape3D_tah6c")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+
+[editable path="Арматура_001/Spider_legs/Right/spider_leg"]
+[editable path="Арматура_001/Spider_legs/Right/spider_leg2"]
+[editable path="Арматура_001/Spider_legs/Right/spider_leg3"]
+[editable path="Арматура_001/Spider_legs/Right/spider_leg4"]
+[editable path="Арматура_001/Spider_legs/Left/spider_leg"]
+[editable path="Арматура_001/Spider_legs/Left/spider_leg2"]
+[editable path="Арматура_001/Spider_legs/Left/spider_leg3"]
+[editable path="Арматура_001/Spider_legs/Left/spider_leg4"]
+[editable path="Spider_legs/Right/spider_leg"]
+[editable path="Spider_legs/Right/spider_leg4"]

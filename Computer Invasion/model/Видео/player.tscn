@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://c65u0qp8po2f6"]
+
+[ext_resource type="Script" path="res://model/Видео/player.gd" id="1_77y7w"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sxpyk"]
+radius = 0.45
+height = 1.9
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_coto8"]
+radius = 0.45
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vh521"]
+radius = 0.45
+height = 0.9
+
+[node name="PLayer" type="CharacterBody3D"]
+script = ExtResource("1_77y7w")
+
+[node name="neck" type="Node3D" parent="."]
+transform = Transform3D(1, 4.23516e-22, 1.67037e-22, 4.23516e-22, 1, 0, 1.67038e-22, 0, 1, 8.47033e-22, 0.68224, 0)
+
+[node name="head" type="Node3D" parent="neck"]
+
+[node name="eyse" type="Node3D" parent="neck/head"]
+
+[node name="Camera3D" type="Camera3D" parent="neck/head/eyse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.129895)
+
+[node name="HeadRay" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0.08224, 0)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_sxpyk")
+
+[node name="normal_CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.050588, 0)
+shape = SubResource("CapsuleShape3D_coto8")
+
+[node name="crochinng_CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_vh521")

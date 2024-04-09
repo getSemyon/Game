@@ -3,6 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://mad3bmfrd3a6" path="res://scen/Items_scen/base_item.tscn" id="1_kotes"]
 [ext_resource type="Script" path="res://scripts/Item/WeponItem.gd" id="2_prgxi"]
 
-[node name="WeponItem" instance=ExtResource("1_kotes")]
+[node name="WeponItem" groups=["save_load_item"] instance=ExtResource("1_kotes")]
 script = ExtResource("2_prgxi")
 wepon_export = 0

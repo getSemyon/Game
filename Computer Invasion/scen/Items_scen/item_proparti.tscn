@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://mad3bmfrd3a6" path="res://scen/Items_scen/base_item.tscn" id="1_s20fx"]
 [ext_resource type="Script" path="res://scripts/Item/item_proparti.gd" id="2_21iev"]
 
-[node name="ItemProparti" instance=ExtResource("1_s20fx")]
+[node name="ItemProparti" groups=["save_load_item"] instance=ExtResource("1_s20fx")]
 script = ExtResource("2_21iev")
 proparti_enum_export = 0
 count_proparti_export = 0

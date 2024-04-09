@@ -11,3 +11,6 @@ func _on_area_3d_body_entered(body):
 
 func proparti(target : Player):
 	pass
+
+func get_data():
+	return name

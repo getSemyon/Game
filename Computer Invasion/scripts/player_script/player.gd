@@ -60,17 +60,18 @@ const JUMP_VELOCITY = 4.5
 
 # Nodes player
 @onready var neck = $neck
-@onready var head := $neck/head
+@onready var head = $neck/head
 @onready var eyse = $neck/head/eyse
 @onready var normal_collision_shape_3d = $normal_CollisionShape3D
 @onready var crochinng_collision_shape_3d = $crochinng_CollisionShape3D
 @onready var head_ray = $HeadRay
 @onready var rey_up_heng = $ReyUpHeng
 @onready var reys_down_heng = $ReysDownHeng
-@onready var animation_tree = $AnimationTree
 @onready var camera = $neck/head/eyse/Camera3D
 @onready var ray_corect = $RayCorect
 @onready var basic_wepon = $basic_wepon
+@onready var ray_interect = $neck/head/eyse/RayInterect
+@onready var pause_menu___setting = $"pause_menu - setting"
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -79,9 +80,18 @@ func _ready():
 	heal = heal_export
 	damage = damage_export
 	speed = speed_export
-	point_shoot = $Marker3D
+	
+	point_shoot = $neck/head/eyse/Marker3D
 	scen_point = $basic_wepon
+	
 	player_interface = $PlayerInterface
+	
+	Updateinterface()
+	
+	rey_hook = $neck/head/eyse/RayHook
+	line_helper = $LineHelper
+	line = $LineHelper/Line
+	line.hide()
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -95,12 +105,19 @@ func _input(event):
 			
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+		camera_angel = head.rotation
 
 func check_input():
 	if Input.is_action_just_pressed("shoot"):
-		#basic_wepon.faer()
-		attack()
-		return
+		if wepon_list[wepon_check][0] == "Hook":
+			hook()
+		else:
+			attack()
+		pass
+		
+	if Input.is_action_just_released("shoot") and hooked:
+		hooked = false
+		line.hide()
 	
 	if Input.is_action_just_released("scrolUp"):
 		weponScrol(1)
@@ -112,10 +129,6 @@ func check_input():
 	
 	if Input.is_action_just_pressed("ui_right"):
 		camera.current = !camera.current
-		return
-		
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit() 
 		return
 
 func _unhandled_input(event):
@@ -273,7 +286,6 @@ func _physics_process(delta):
 			hanging_timer = hanging_timer_max
 			velocity.y = 1.5 * JUMP_VELOCITY
 		elif (is_on_floor() and not is_hanging) or count_jump > 0:
-			#animation_tree.set("parameters/conditions/jump", true)
 			velocity.y = JUMP_VELOCITY
 			count_jump -= 1
 			if sliding:
@@ -294,62 +306,21 @@ func _physics_process(delta):
 	elif is_hanging:
 		direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, 0)).normalized(), delta * lerp_speed)
 	
-	#if input_dir == Vector2.ZERO:
-		#idel = true
-	#else:
-		#idel = false
-	
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		#animation_tree.set("parameters/conditions/walk", true)
-		#animation_tree.set("parameters/conditions/idel", false)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
+	if hooked:
+		swing(delta)
+		
 	if spin_time > 0:
 		spin_time -= delta
 	
 	if Input.is_action_just_pressed("spin_dash"):
 		if spin_on and spin_time <= 0 and not sliding:
 			spin(delta)
-	#input_dir.y *= -1
-	#if is_on_floor():
-		#animation_tree.set("parameters/conditions/idel", input_dir == Vector2.ZERO and not croching)
-		#animation_tree.set("parameters/conditions/walk", input_dir != Vector2.ZERO and walking)
-		#animation_tree.set("parameters/conditions/sprint", input_dir != Vector2.ZERO and sprinting)
-		#animation_tree.set("parameters/conditions/croching", croching == true)
-		#animation_tree.set("parameters/conditions/fall", false)
-		#animation_tree.set("parameters/conditions/fall_flore", true)
-		#
-		#if walking:
-			#animation_tree.set("parameters/walk/blend_position", input_dir)
-			#
-		#if sprinting:
-			#animation_tree.set("parameters/sprint/blend_position", input_dir)
-			#
-		#if croching:
-			#animation_tree.set("parameters/croching/blend_position", input_dir)
-		#
-		#animation_tree.set("parameters/conditions/slide", sliding == true)
-		#animation_tree.set("parameters/conditions/runsSlide", sliding == true)
-	#else:
-		#animation_tree.set("parameters/conditions/fall_flore", false)
-		#animation_tree.set("parameters/conditions/hang", is_hanging == true)
-		#animation_tree.set("parameters/conditions/jump", false)
-		#
-		#if is_hanging:
-			#animation_tree.set("parameters/hang/blend_position", input_dir.x)
-			#animation_tree.set("parameters/conditions/fall", false)
-		#else:
-			#animation_tree.set("parameters/conditions/fall", true)
 	
 	move_and_slide()
-
-
-
-func spin(delta):
-	velocity.x = lerp(velocity.x, velocity.x * pover_spin, 20 * delta)
-	velocity.z = lerp(velocity.z, velocity.z * pover_spin, 20 * delta)
-	spin_time = spin_timer_max

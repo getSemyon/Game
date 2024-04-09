@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ktintwnv7nhn"]
+
+[ext_resource type="Script" path="res://scripts/interecteble_object_script/Interagteble.gd" id="1_h5mft"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5n2kq"]
+size = Vector3(0.5, 0.2, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i5cic"]
+size = Vector3(0.5, 0.2, 0.5)
+
+[node name="Button" type="StaticBody3D"]
+script = ExtResource("1_h5mft")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5n2kq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_i5cic")
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]

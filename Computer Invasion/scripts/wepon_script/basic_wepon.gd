@@ -2,7 +2,7 @@ extends Node3D
 class_name Base_wepon
 
 @onready var marker = $Marker3D
-const MISSILE = preload("res://scen/Enemy_scen/missile.tscn")
+var MISSILE = preload("res://scripts/missele-bomb_script/missile.gd")
 
 func faer():
 	var m = MISSILE.instantiate()
