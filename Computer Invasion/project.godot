@@ -15,12 +15,17 @@ run/main_scene="res://scen/testScen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://music and sound/default_bus_layout.tres"
+
 [autoload]
 
 CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
 SignalBus="res://scripts/SignalBus.gd"
 SaveLodeMenager="*res://scripts/SaveLodeMenager.gd"
 DataContainer="res://scripts/DataContainer.gd"
+SaveLodeSettings="*res://scripts/SaveLodeSettings.gd"
 
 [editor_plugins]
 

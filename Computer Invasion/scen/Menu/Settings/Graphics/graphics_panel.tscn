@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://o4td8o3h6vor"]
+
+[ext_resource type="Script" path="res://scripts/menu_script/settings_script/Graphic_script/Graphics_panel.gd" id="1_eexo8"]
+[ext_resource type="PackedScene" uid="uid://b7rvancfskij0" path="res://scen/Menu/Settings/Graphics/graphics_controller.tscn" id="2_yekbj"]
+
+[node name="Graphics_panel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eexo8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Graphics_controller" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_yekbj")]
+layout_mode = 2
+Text = " Режим окна"
+
+[node name="Graphics_controller2" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_yekbj")]
+layout_mode = 2
+Text = "Разрешение"
+Base_Index = 4
+
+[connection signal="coise_item" from="MarginContainer/VBoxContainer/Graphics_controller" to="." method="_on_graphics_controller_coise_item"]
+[connection signal="coise_item" from="MarginContainer/VBoxContainer/Graphics_controller2" to="." method="_on_graphics_controller_2_coise_item"]
