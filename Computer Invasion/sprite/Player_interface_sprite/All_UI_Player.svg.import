@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3p1ywp45cad0"
-path="res://.godot/imported/Аружие.png-e8826f89ac1f1bbec40eea5e8f40d41f.ctex"
+uid="uid://b7cm88ko46v3v"
+path="res://.godot/imported/All_UI_Player.svg-d2b81da7961964a96d75a9bbbe5ae7b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/Аружие.png"
-dest_files=["res://.godot/imported/Аружие.png-e8826f89ac1f1bbec40eea5e8f40d41f.ctex"]
+source_file="res://sprite/Player_interface_sprite/All_UI_Player.svg"
+dest_files=["res://.godot/imported/All_UI_Player.svg-d2b81da7961964a96d75a9bbbe5ae7b6.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

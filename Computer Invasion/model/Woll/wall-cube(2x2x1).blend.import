@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ckks5gra0sols"
-path="res://.godot/imported/wall1.blend-2fc9f19edad67d843602e713d0bcfb5a.scn"
+uid="uid://ccr54qjhe1j7c"
+path="res://.godot/imported/wall-cube(2x2x1).blend-a53d45dcc5d252d3825203d0a7ae92bb.scn"
 
 [deps]
 
-source_file="res://model/wall1.blend"
-dest_files=["res://.godot/imported/wall1.blend-2fc9f19edad67d843602e713d0bcfb5a.scn"]
+source_file="res://model/Woll/wall-cube(2x2x1).blend"
+dest_files=["res://.godot/imported/wall-cube(2x2x1).blend-a53d45dcc5d252d3825203d0a7ae92bb.scn"]
 
 [params]
 

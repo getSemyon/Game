@@ -28,7 +28,6 @@ func _ready():
 func _load_keybindings_from_settings():
 	var keybindings = SaveLodeSettings.load_keybindings()
 	for action in keybindings.keys():
-		print(str(keybindings[action]))
 		InputMap.action_erase_events(action)
 		InputMap.action_add_event(action, keybindings[action])
 

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dticwhfd5ucuf"]
+
+[ext_resource type="Script" path="res://scripts/word_script/Run_Platform.gd" id="1_40edp"]
+[ext_resource type="PackedScene" uid="uid://unlrh2s0e81g" path="res://model/Woll/wall2.blend" id="2_t6i1r"]
+
+[sub_resource type="Curve3D" id="Curve3D_vyl16"]
+bake_interval = 0.01
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -7, -30, 0, 0, 0, 0, 0, 0, 0, -1, 40, -7),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Run_Platform" type="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+curve = SubResource("Curve3D_vyl16")
+script = ExtResource("1_40edp")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -30, 0)
+rotation_mode = 0
+loop = false
+
+[node name="wall2" parent="PathFollow3D" instance=ExtResource("2_t6i1r")]

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cwushfpjmrbja"
-path="res://.godot/imported/wall2.glb-9bd61268024437432088a9f08c0a97f2.scn"
+uid="uid://c0kuhscfv88ch"
+path="res://.godot/imported/chervak.glb-4b12bbc5ba883a61576150219f1c396a.scn"
 
 [deps]
 
-source_file="res://model/wall2.glb"
-dest_files=["res://.godot/imported/wall2.glb-9bd61268024437432088a9f08c0a97f2.scn"]
+source_file="res://model/enimes/chervak.glb"
+dest_files=["res://.godot/imported/chervak.glb-4b12bbc5ba883a61576150219f1c396a.scn"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bwx184vfo0y47"
-path="res://.godot/imported/spider_leg.blend-22a285bedef23d25291d1b3ed4cb4087.scn"
+uid="uid://cb3xboq43bj8p"
+path="res://.godot/imported/wall2-zero_point_five.blend-595e77f2c542bca401f334edd85bf55e.scn"
 
 [deps]
 
-source_file="res://model/spider_leg.blend"
-dest_files=["res://.godot/imported/spider_leg.blend-22a285bedef23d25291d1b3ed4cb4087.scn"]
+source_file="res://model/Woll/wall2-zero_point_five.blend"
+dest_files=["res://.godot/imported/wall2-zero_point_five.blend-595e77f2c542bca401f334edd85bf55e.scn"]
 
 [params]
 

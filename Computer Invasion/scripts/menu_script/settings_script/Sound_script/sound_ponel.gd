@@ -7,7 +7,6 @@ extends Control
 func _ready():
 	var audio_settings = SaveLodeSettings.load_audio_settings()
 	
-	print(str(audio_settings.Master))
 	if audio_settings != {}:
 		sound_controller.set_data(audio_settings.Master)
 		sound_controller_3.set_data(audio_settings.Music)

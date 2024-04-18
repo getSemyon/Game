@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://smjoynr2pxas"]
 
-[ext_resource type="PackedScene" uid="uid://bwx184vfo0y47" path="res://model/spider_leg.blend" id="1_uy2u2"]
+[ext_resource type="PackedScene" uid="uid://bwx184vfo0y47" path="res://model/enimes/spider_leg.blend" id="1_uy2u2"]
 [ext_resource type="Script" path="res://scripts/enemy_script/spider/spider_leg.gd" id="2_b5pxu"]
 [ext_resource type="Script" path="res://scripts/enemy_script/spider/spider_leg_data.gd" id="2_kknlo"]
 [ext_resource type="PackedScene" uid="uid://bmaheul04wlvr" path="res://scen/Enemy_scen/spider/step_point.tscn" id="3_h0blu"]

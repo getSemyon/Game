@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b24wp1j60jome"
-path="res://.godot/imported/Spider.blend-ae2ceca5886a34e0eb014f7a9acecdee.scn"
+uid="uid://bwx184vfo0y47"
+path="res://.godot/imported/spider_leg.blend-b1b506d51d9d8f50af82063adafc2a88.scn"
 
 [deps]
 
-source_file="res://model/Spider.blend"
-dest_files=["res://.godot/imported/Spider.blend-ae2ceca5886a34e0eb014f7a9acecdee.scn"]
+source_file="res://model/enimes/spider_leg.blend"
+dest_files=["res://.godot/imported/spider_leg.blend-b1b506d51d9d8f50af82063adafc2a88.scn"]
 
 [params]
 

@@ -28,7 +28,8 @@ var wepon_list = {
 	0 : ["NoneWepon", true],
 	1 : ["Blater", false],
 	2 : ["Hook", false],
-	3 : ["Rocket", false]
+	3 : ["Rocket", false],
+	4 : ["Bomb", false]
 }
 var wepon_check : int = 0
 
