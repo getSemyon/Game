@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://crp3673opv5dc"
-path="res://.godot/imported/papka.blend-79506efa1ffae9c3b1e769e3e97f5eea.scn"
+uid="uid://cybbxcy3vroh3"
+path="res://.godot/imported/rocket.blend-306180eeb1da675fe02818511a03a772.scn"
 
 [deps]
 
-source_file="res://model/papka.blend"
-dest_files=["res://.godot/imported/papka.blend-79506efa1ffae9c3b1e769e3e97f5eea.scn"]
+source_file="res://model/wepon/rocket.blend"
+dest_files=["res://.godot/imported/rocket.blend-306180eeb1da675fe02818511a03a772.scn"]
 
 [params]
 

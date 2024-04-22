@@ -1,9 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://mad3bmfrd3a6"]
+[gd_scene load_steps=6 format=3 uid="uid://mad3bmfrd3a6"]
 
 [ext_resource type="Script" path="res://scripts/Item/BaseItem.gd" id="1_ab32g"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_hdsj1"]
-size = Vector3(1, 1.2, 0.1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vthi6"]
 radius = 0.7
@@ -13,7 +10,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("Rotate_Item:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,14 +22,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/path = NodePath("Rotate_Item:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 0.2, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_j0cip"]
@@ -42,26 +39,26 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/path = NodePath("Rotate_Item:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4, 6, 8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0.133333, 0), Vector3(0, 0.0666667, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/path = NodePath("Rotate_Item:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+"values": [Vector3(0, 0.5, 0), Vector3(0, 0.7, 0), Vector3(0, 0.5, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v0hfc"]
@@ -71,11 +68,12 @@ _data = {
 }
 
 [node name="BaseItem" type="Node3D"]
-transform = Transform3D(0.867086, 0, -0.498158, 0, 1, 0, 0.498158, 0, 0.867086, 0, 0.104432, 0)
+transform = Transform3D(0.867086, 0, -0.498158, 0, 1, 0, 0.498158, 0, 0.867086, 0, 0.5, 0)
 script = ExtResource("1_ab32g")
+item_rotate = "res://model/items/Item.blend"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_hdsj1")
+[node name="Rotate_Item" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 

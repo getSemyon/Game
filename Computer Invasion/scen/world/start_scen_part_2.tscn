@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://nx41qrscql5t"]
+[gd_scene load_steps=11 format=3 uid="uid://nx41qrscql5t"]
 
 [ext_resource type="PackedScene" uid="uid://ckks5gra0sols" path="res://model/Woll/wall1.blend" id="1_s7ffk"]
 [ext_resource type="PackedScene" uid="uid://b74kwh6en5lex" path="res://model/Woll/wall-cube(2x1x1).blend" id="2_6wyye"]
@@ -6,8 +6,24 @@
 [ext_resource type="PackedScene" uid="uid://cosg808srlo8b" path="res://model/Woll/wall-cube(3x2x1).blend" id="4_hocmr"]
 [ext_resource type="PackedScene" uid="uid://bois6mej5udtg" path="res://model/Woll/wall-cube(3x3x1).blend" id="5_outx8"]
 [ext_resource type="PackedScene" uid="uid://unlrh2s0e81g" path="res://model/Woll/wall2.blend" id="6_7mimy"]
-[ext_resource type="PackedScene" uid="uid://d38kswk0y5h57" path="res://scen/Player/player.tscn" id="7_h531t"]
+[ext_resource type="PackedScene" uid="uid://crks5hss1c4gv" path="res://scen/Plane/danger_plane.tscn" id="7_u0pnf"]
 [ext_resource type="PackedScene" uid="uid://dticwhfd5ucuf" path="res://scen/Plane/run_platform.tscn" id="8_g8eg0"]
+
+[sub_resource type="Curve3D" id="Curve3D_oo77x"]
+bake_interval = 0.01
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -7, -30, 3, 0, 0, 0, 0, 0, 0, -30, -30, 9),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_u7twq"]
+bake_interval = 0.01
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -50, 1, 0, 0, 0, 0, 0, 0, -22, -10, 2, 0, 0, 0, 0, 0, 0, -40, 10, -18),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
 
 [node name="start_scen_part_2" type="Node3D"]
 
@@ -789,8 +805,70 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 13, 8,
 [node name="wall-cube(3x3x1)" parent="Wall2" instance=ExtResource("5_outx8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, -25)
 
-[node name="Player" parent="." instance=ExtResource("7_h531t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -5)
+[node name="Platform" type="Node3D" parent="."]
 
-[node name="Run_Platform" parent="." instance=ExtResource("8_g8eg0")]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 10, 4, -7)
+[node name="wall-cube(2x1x1)" parent="Platform" instance=ExtResource("2_6wyye")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 10, 1, -16)
+
+[node name="wall-cube(2x1x1)6" parent="Platform" instance=ExtResource("2_6wyye")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 8, 4, -10)
+
+[node name="wall-cube(2x1x1)2" parent="Platform" instance=ExtResource("2_6wyye")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14, 5, -7)
+
+[node name="wall-cube(2x1x1)3" parent="Platform" instance=ExtResource("2_6wyye")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -23, 1, 7)
+
+[node name="wall-cube(2x1x1)5" parent="Platform" instance=ExtResource("2_6wyye")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 20, 1, 7)
+
+[node name="wall-cube(2x1x1)7" parent="Platform" instance=ExtResource("2_6wyye")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -21, 4, 3)
+
+[node name="wall-cube(2x1x1)4" parent="Platform" instance=ExtResource("2_6wyye")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -16, 5, 1)
+
+[node name="Danger_platform" type="Node3D" parent="Platform"]
+
+[node name="DangerPlane" parent="Platform/Danger_platform" instance=ExtResource("7_u0pnf")]
+transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 2, 14, 1.7, -1)
+
+[node name="DangerPlane2" parent="Platform/Danger_platform" instance=ExtResource("7_u0pnf")]
+transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 2, -20.9, 1.7, -8)
+
+[node name="DangerPlane3" parent="Platform/Danger_platform" instance=ExtResource("7_u0pnf")]
+transform = Transform3D(-3.0598e-07, 0, -1, 0, 2, 0, 7, 0, -4.37114e-08, -3.4, 1.7, -4.6)
+
+[node name="Danger_platform2" type="Node3D" parent="Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="DangerPlane" parent="Platform/Danger_platform2" instance=ExtResource("7_u0pnf")]
+transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 2, 14, 1.7, -1)
+
+[node name="DangerPlane2" parent="Platform/Danger_platform2" instance=ExtResource("7_u0pnf")]
+transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 2, -20.9, 1.7, -8)
+
+[node name="DangerPlane3" parent="Platform/Danger_platform2" instance=ExtResource("7_u0pnf")]
+transform = Transform3D(-3.0598e-07, 0, -1, 0, 2, 0, 7, 0, -4.37114e-08, -3.4, 1.7, -4.6)
+
+[node name="Danger_platform3" type="Node3D" parent="Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+
+[node name="DangerPlane" parent="Platform/Danger_platform3" instance=ExtResource("7_u0pnf")]
+transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 2, 14, 1.7, -1)
+
+[node name="DangerPlane2" parent="Platform/Danger_platform3" instance=ExtResource("7_u0pnf")]
+transform = Transform3D(35, 0, 0, 0, 2, 0, 0, 0, 2, -20.9, 1.7, -8)
+
+[node name="DangerPlane3" parent="Platform/Danger_platform3" instance=ExtResource("7_u0pnf")]
+transform = Transform3D(-3.0598e-07, 0, -1, 0, 2, 0, 7, 0, -4.37114e-08, -3.4, 1.7, -4.6)
+
+[node name="Run_Platform" parent="Platform" instance=ExtResource("8_g8eg0")]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 17, 12, -9)
+curve = SubResource("Curve3D_oo77x")
+factor = 3
+
+[node name="Run_Platform2" parent="Platform" instance=ExtResource("8_g8eg0")]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 20, 9, 1)
+curve = SubResource("Curve3D_u7twq")
+factor = 5

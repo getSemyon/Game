@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cybbxcy3vroh3"
-path="res://.godot/imported/rocket.blend-299f91a6b930360e38b26851c7a91a51.scn"
+uid="uid://cn8w4fq4sn3eo"
+path="res://.godot/imported/Heel.blend-5272c95eefbc334c2e63395482a91824.scn"
 
 [deps]
 
-source_file="res://model/rocket.blend"
-dest_files=["res://.godot/imported/rocket.blend-299f91a6b930360e38b26851c7a91a51.scn"]
+source_file="res://model/items/Heel.blend"
+dest_files=["res://.godot/imported/Heel.blend-5272c95eefbc334c2e63395482a91824.scn"]
 
 [params]
 

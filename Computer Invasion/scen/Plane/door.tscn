@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3ocpnt8v7kyf"]
+
+[ext_resource type="PackedScene" uid="uid://ckks5gra0sols" path="res://model/Woll/wall1.blend" id="1_js3u8"]
+[ext_resource type="Script" path="res://scripts/Plane/door.gd" id="1_s6rqo"]
+
+[sub_resource type="Animation" id="Animation_g2sk4"]
+resource_name = "Open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wall1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.56, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, -1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t73x0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wall1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lce4t"]
+_data = {
+"Open": SubResource("Animation_g2sk4"),
+"RESET": SubResource("Animation_t73x0")
+}
+
+[node name="Door" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_s6rqo")
+
+[node name="wall1" parent="." instance=ExtResource("1_js3u8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lce4t")
+}

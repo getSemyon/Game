@@ -10,7 +10,7 @@ enum spels {
 var spel : spels
 
 func _ready():
-	self._ready
+	ready()
 	spel = spel_export
 
 

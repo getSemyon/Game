@@ -1,17 +1,13 @@
 extends BaseItem
 class_name WeponItem
 
-enum wepons {
-	NonWepon,
-	Wepon1,
-	Wepon2
-}
+const ResursWepon = preload("res://Resurs/Resurs_wepon.gd")
 
-@export var wepon_export : wepons
-var wepon : wepons
+@export var wepon_export : WEPONS.wepons_name
+var wepon : WEPONS.wepons_name
 
 func _ready():
-	self._ready
+	ready()
 	wepon = wepon_export
 
 func proparti(target : Player):
