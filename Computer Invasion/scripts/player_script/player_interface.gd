@@ -12,11 +12,15 @@ var sprite_dictionari = {
 	"Bomb" : preload("res://sprite/Wepon_sprite/Bomb.atlastex"),
 }
 
+func init_proparti(heal, armor):
+	heal_parametr.init_health(heal)
+	armor_parametr.init_health(armor)
+
 func HealProparti(value : int):
-	heal_parametr.text = str(value)
+	heal_parametr.proparti_value += value
 
 func ArmorProparti(value : int):
-	armor_parametr.text = str(value)
+	armor_parametr.proparti_value += value
 	
 func WeponProparti(name : String):
 	if name != "NoneWepon":

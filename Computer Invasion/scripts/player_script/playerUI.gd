@@ -54,6 +54,8 @@ var line
 func take_damege(damege_enemy : int):
 	print("damege")
 	heal -= damege_enemy
+	player_interface.HealProparti(-damege_enemy)
+	
 	if heal <= 0:
 		die()
 

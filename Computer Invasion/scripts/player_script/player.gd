@@ -86,7 +86,8 @@ func _ready():
 	
 	player_interface = $PlayerInterface
 	
-	Updateinterface()
+	#Updateinterface()
+	player_interface.init_proparti(heal, armor)
 	
 	rey_hook = $neck/head/eyse/RayHook
 	line_helper = $LineHelper

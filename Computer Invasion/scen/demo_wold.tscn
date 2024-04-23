@@ -43,6 +43,10 @@ item_rotate = "res://model/items/Heel.blend"
 
 [node name="Player" parent="." instance=ExtResource("9_yb4ga")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4335, 2, 22)
+heal_export = 100
+damage_export = 10
+speed_export = 10.0
+armor_export = 100
 
 [node name="ItemProparti3" parent="." instance=ExtResource("8_v5sdq")]
 transform = Transform3D(0.867086, 0, -0.498158, 0, 1, 0, 0.498158, 0, 0.867086, -7.12563, 4, 15.2572)
