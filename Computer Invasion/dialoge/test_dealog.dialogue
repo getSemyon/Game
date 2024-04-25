@@ -1,0 +1,13 @@
+~ start_game
+
+sistem: [do DialogeState.start()] [wait=1]Приветсвию игрок.[next=3]
+girlfrend: Что бы перемещаться используй кнопки W,S,A,D[next=3]
+hacker: Что бы прыгать нажмите на SPACE [wait=3] [do DialogeState.end()]
+
+=> END
+
+~ information
+
+information : [do DialogeState.start()] [wait=1] {{DialogeState.text}} [wait=3] [do DialogeState.end()]
+
+=> END

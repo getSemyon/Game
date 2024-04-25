@@ -10,5 +10,6 @@ func _ready():
 	ready()
 	wepon = wepon_export
 
-func proparti(target : Player):
+func proparti(target : Player):	
 	target.getWepon(wepon)
+	

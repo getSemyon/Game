@@ -512,41 +512,34 @@ block_data = SubResource("Resource_mdypv")
 [node name="ItemProparti" parent="Node" instance=ExtResource("5_kp57w")]
 transform = Transform3D(0.867086, 0, -0.498158, 0, 1, 0, 0.498158, 0, 0.867086, -10.0347, 2, -1.9718)
 count_proparti_export = 10
-item_rotate = null
 
 [node name="ItemProparti2" parent="Node" instance=ExtResource("5_kp57w")]
 transform = Transform3D(0.867086, 0, -0.498158, 0, 1, 0, 0.498158, 0, 0.867086, -5.74465, 3, -1.6387)
 proparti_enum_export = 1
 count_proparti_export = 10
-item_rotate = null
 
 [node name="ItemProparti3" parent="Node" instance=ExtResource("5_kp57w")]
 transform = Transform3D(0.867086, 0, -0.498158, 0, 1, 0, 0.498158, 0, 0.867086, -1.4663, 2, -1.8651)
 proparti_enum_export = 2
 count_proparti_export = 10
-item_rotate = null
 
 [node name="WeponItem" parent="Node" instance=ExtResource("6_bvosg")]
 transform = Transform3D(0.867086, 0, -0.498158, 0, 1, 0, 0.498158, 0, 0.867086, -8.81717, 2.33174, 3.2864)
 wepon_export = 1
-item_rotate = null
 
 [node name="WeponItem2" parent="Node" instance=ExtResource("6_bvosg")]
 transform = Transform3D(0.867086, 0, -0.498158, 0, 1, 0, 0.498158, 0, 0.867086, -3.14315, 2.19006, 3.6515)
 wepon_export = 2
-item_rotate = null
 
 [node name="ItemProparti4" parent="Node" instance=ExtResource("5_kp57w")]
 transform = Transform3D(0.867086, 0, -0.498158, 0, 1, 0, 0.498158, 0, 0.867086, -0.15, 5.09701, 2.8303)
 proparti_enum_export = 3
 count_proparti_export = 1
-item_rotate = null
 
 [node name="ItemProparti5" parent="Node" instance=ExtResource("5_kp57w")]
 transform = Transform3D(0.867086, 0, -0.498158, 0, 1, 0, 0.498158, 0, 0.867086, 2.8446, 7.92275, -4.27861)
 proparti_enum_export = 4
 count_proparti_export = 1
-item_rotate = null
 
 [node name="DangerPlane" parent="Node" instance=ExtResource("8_cwky6")]
 transform = Transform3D(-4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, -11.964, 3.39036, -4.45894)
@@ -562,5 +555,3 @@ libraries = {
 autoplay = "Rotate"
 
 [node name="menu - settings" parent="." instance=ExtResource("7_i4vl0")]
-
-[editable path="Node/ItemProparti"]

@@ -50,6 +50,8 @@ var rey_hook : Node3D
 var line_helper
 var line 
 
+var start_dealog = preload("res://dialoge/DialogeGame/StartDealog.gd")
+
 # function
 func take_damege(damege_enemy : int):
 	print("damege")
@@ -86,13 +88,20 @@ func getProparti(type_proparti : int, count_proparti : int):
 			damage += count_proparti
 		3:
 			spin_on = count_proparti
+			
+			var text_button = InputMap.action_get_events("spin_dash")[0].as_text().trim_suffix(" (Physical)")
+			DialogeState.text = "Вы подобрали спин деш! \n Что бы его активировать нажмите "+text_button
+			add_child(load("res://dialoge/DialogeGame/start_dealog.tscn").instantiate())
 		4:
 			count_jump_max = count_proparti
 
 func getWepon(wepon_id : int):
 	wepon_list[wepon_id][1] = true
-	print(wepon_list[wepon_id][0])
+	DialogeState.text = "Вы получмли "+wepon_list[wepon_id][0]
+	add_child(load("res://dialoge/DialogeGame/start_dealog.tscn").instantiate())
+	
 	wepon_list[0][1] = false
+	weponScrol(wepon_id)
 
 func weponScrol(ScrolIndex : int):
 	while true:

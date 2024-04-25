@@ -14,10 +14,10 @@ func _on_button_pressed():
 	if ResourceLoader.exists(URL):
 		DirAccess.remove_absolute(URL)
 	
-	get_tree().change_scene_to_file("res://scen/testScen.tscn")
+	get_tree().change_scene_to_file("res://scen/demo_wold.tscn")
 
 func _on_button_2_pressed():
-	get_tree().change_scene_to_file("res://scen/testScen.tscn")
+	get_tree().change_scene_to_file("res://scen/demo_wold.tscn")
 
 func _on_button_3_pressed():
 	settings_choce.emit()

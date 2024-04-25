@@ -162,14 +162,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -9)
 [node name="wall1" parent="wall_4" instance=ExtResource("1_h531d")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9, 5, -3)
 
+[node name="wall3" parent="wall_4" instance=ExtResource("1_h531d")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9, 3, 7)
+
 [node name="wall2" parent="wall_4" instance=ExtResource("1_h531d")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9, 7, -7)
 
 [node name="wall-cube(2x1x1)" parent="wall_4" instance=ExtResource("3_s2wor")]
 transform = Transform3D(-4.37114e-08, 0, 1, 1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 1, 1.91069e-15, 9, 5, -6)
 
+[node name="wall-cube(2x1x1)5" parent="wall_4" instance=ExtResource("3_s2wor")]
+transform = Transform3D(-4.37114e-08, 0, 1, 1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 1, 1.91069e-15, 9, 1, 8)
+
 [node name="wall-cube(2x1x1)2" parent="wall_4" instance=ExtResource("3_s2wor")]
 transform = Transform3D(-4.37114e-08, 0, 1, 1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 1, 1.91069e-15, 9, 7, 4)
+
+[node name="wall-cube(2x1x1)4" parent="wall_4" instance=ExtResource("3_s2wor")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, -1, -1.77636e-15, 1, 0, 4.37114e-08, 9, 6, 7)
 
 [node name="wall-cube(2x1x1)3" parent="wall_4" instance=ExtResource("3_s2wor")]
 transform = Transform3D(-4.37114e-08, 0, 1, 1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 1, 1.91069e-15, 9, 7, -4)
