@@ -31,6 +31,9 @@ var state = IDEL
 # hidden var
 var lerp_rotate : float = 10.0
 
+@onready var nav_agent = $NavigationAgent3D
+
+
 func _ready():
 	heal = heal_export
 	damage = damage_export
@@ -40,15 +43,20 @@ func _ready():
 	attack_periude = time_to_next_attack
 
 func _process(delta): 
+	velocity = Vector3.ZERO
+	
 	if state == ALERT:
 		if attack_periude > 0.0:
 			attack_periude -= delta
 		else:
 			attack(target)
 			
-		var target_position = target.transform.origin
-		var new_transform = transform.looking_at(target_position, Vector3.UP)
-		transform  = transform.interpolate_with(new_transform, speed * delta)
+		nav_agent.set_target_position(target.global_transform.origin)
+		var next_nav_point = nav_agent.get_next_path_position()
+		velocity = (target.global_transform.origin - global_transform.origin).normalized() * speed
+		rotation.y = lerp_angle(rotation.y, atan2(-velocity.x, -velocity.z), delta * 10.0)
+		
+	move_and_slide()
 
 func sleep():
 	state = IDEL
@@ -79,5 +87,4 @@ func _on_target_area_body_entered(body):
 
 func _on_target_area_body_exited(body):
 	if body is Player:
-		print("untarget")
 		sleep()

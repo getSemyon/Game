@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwuso0hklr22x"]
+[gd_scene load_steps=7 format=3 uid="uid://cwuso0hklr22x"]
 
 [ext_resource type="Script" path="res://scripts/enemy_script/enemy.gd" id="1_2nbqk"]
+[ext_resource type="PackedScene" uid="uid://crp3673opv5dc" path="res://model/enimes/papka.blend" id="2_f3icd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ucak"]
 albedo_color = Color(0.803922, 0.14902, 0, 1)
@@ -14,25 +15,36 @@ material = SubResource("StandardMaterial3D_2ucak")
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_2nbqk")
+heal_export = 10
+damage_export = 1
+speed_export = 3.0
+time_to_next_attack_export = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_su3r2")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_xv0oh")
 
 [node name="TargetArea" type="Area3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1.7, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TargetArea"]
 shape = SubResource("SphereShape3D_xv0oh")
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -1)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1, -1)
 mesh = SubResource("BoxMesh_k442a")
+
+[node name="papka" parent="." instance=ExtResource("2_f3icd")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 1, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [connection signal="body_entered" from="TargetArea" to="." method="_on_target_area_body_entered"]
 [connection signal="body_exited" from="TargetArea" to="." method="_on_target_area_body_exited"]

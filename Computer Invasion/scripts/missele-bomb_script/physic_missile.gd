@@ -10,12 +10,15 @@ var derection = []
 @onready var animation_player = $AnimationPlayer
 @onready var timer = $Timer
 
-@onready var mesh_instance_3d = $MeshInstance3D
 @onready var area_3d = $Area3D
 @onready var collision_shape_area = $Area3D2/CollisionShape3D
 @onready var mesh_instance_3d_2 = $MeshInstance3D2
 @onready var area_3d_2 = $Area3D2
 @onready var collision_shape_3d = $CollisionShape3D
+
+@onready var model_physic_missile = $ModelPhysicMissile
+var BOMB = preload("res://model/wepon/bomb.blend")
+var ROCKET = preload("res://model/wepon/rocket.blend")
 
 var is_destroy = false
 var is_expensiv = false
@@ -23,6 +26,11 @@ var is_expensiv = false
 func _ready():
 	$Area3D2.hide()
 	$Area3D2/CollisionShape3D.shape.radius = 0.001
+	
+	if type:
+		model_physic_missile.add_child(ROCKET.instantiate())
+	else:
+		model_physic_missile.add_child(BOMB.instantiate())
 
 #func _process(delta):
 	#if is_destroy:
@@ -54,7 +62,7 @@ func impulse():
 func timer_destroy():
 	timer.wait_time = 0.5
 	mesh_instance_3d_2.visible = true
-	mesh_instance_3d.queue_free()
+	model_physic_missile.queue_free()
 	mesh_instance_3d_2.scale = Vector3(2, 2, 2)
 	boom()
 	timer.start()

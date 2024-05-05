@@ -107,6 +107,8 @@ func _input(event):
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 		camera_angel = head.rotation
+	
+	check_input()
 
 func check_input():
 	if Input.is_action_just_pressed("shoot"):
@@ -114,11 +116,11 @@ func check_input():
 			hook()
 		else:
 			attack()
-		pass
 		
 	if Input.is_action_just_released("shoot") and hooked:
 		hooked = false
 		line.hide()
+		return
 	
 	if Input.is_action_just_released("scrolUp"):
 		weponScrol(1)
@@ -131,9 +133,6 @@ func check_input():
 	if Input.is_action_just_pressed("ui_right"):
 		camera.current = !camera.current
 		return
-
-func _unhandled_input(event):
-	check_input()
 
 func moving(delta, input_dir):	
 	# Croching
@@ -325,3 +324,6 @@ func _physics_process(delta):
 			spin(delta)
 	
 	move_and_slide()
+
+func _on_triger_zone_enter_triger():
+	self.die()

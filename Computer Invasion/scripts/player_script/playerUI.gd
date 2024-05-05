@@ -20,16 +20,14 @@ var armor : int = armor_export
 var point_shoot : Node3D
 var scen_point : Node3D
 var camera_angel : Vector3 = Vector3.ZERO
-#const pach_missile : String = "res://scen/missile and bomb/physic_missile.tscn"
-var missile = preload("res://scen/missile and bomb/physic_missile.tscn")
 
 # wepon var
 var wepon_list = {
 	0 : ["NoneWepon", true],
-	1 : ["Blater", false],
+	1 : ["Blater", false, "res://scen/missile and bomb/missile.tscn"],
 	2 : ["Hook", false],
-	3 : ["Rocket", false],
-	4 : ["Bomb", false]
+	3 : ["Rocket", false, "res://scen/missile and bomb/physic_missile.tscn"],
+	4 : ["Bomb", false, "res://scen/missile and bomb/physic_missile.tscn"]
 }
 var wepon_check : int = 0
 
@@ -62,19 +60,34 @@ func take_damege(damege_enemy : int):
 		die()
 
 func attack():
-	var m = missile.instantiate()
-	
-	m.type = 0
-	m.position = point_shoot.global_position
-	m.transform.basis = global_transform.basis
-	m.rotation.x = camera_angel.x
-	m.impulse()
-	get_tree().get_root().add_child(m)
-	
-	pass
+	if wepon_list[wepon_check].size() == 3:
+		var m = load(wepon_list[wepon_check][2]).instantiate()
+		#m.make_unique()
+		
+		if m is Rocket_Bomb_Rigenbody:
+			if wepon_check == WEPONS.wepons_name.Rocket:
+				m.type = 0
+			else :
+				m.type = 0
+			
+			m.position = point_shoot.global_position
+			m.transform.basis = global_transform.basis
+			m.rotation.x = camera_angel.x
+			m.impulse()
+			get_tree().get_root().add_child(m)
+			
+		elif m is Missile:
+			m.position = point_shoot.global_position
+			m.transform.basis = global_transform.basis
+			m.rotation.x = camera_angel.x
+			get_tree().get_root().add_child(m)
 
 func die():
-	print("playerDie")
+	var dai_panel = preload("res://scen/Player/dae_panel.tscn").instantiate()
+	remove_child($Maneger_pause)
+	add_child(dai_panel)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().paused = true
 
 func getProparti(type_proparti : int, count_proparti : int):
 	match type_proparti:
@@ -101,17 +114,17 @@ func getWepon(wepon_id : int):
 	add_child(load("res://dialoge/DialogeGame/start_dealog.tscn").instantiate())
 	
 	wepon_list[0][1] = false
-	weponScrol(wepon_id)
+	weponScrol(1)
 
 func weponScrol(ScrolIndex : int):
 	while true:
 		wepon_check += ScrolIndex
 		
-		if wepon_check >= 3:
+		if wepon_check >= wepon_list.size() - 1:
 			wepon_check = 0
 			
 		if wepon_check <= -1:
-			wepon_check = 2
+			wepon_check = wepon_list.size() - 1
 		
 		if(wepon_list[wepon_check][1] == true):
 			player_interface.WeponProparti(wepon_list[wepon_check][0])

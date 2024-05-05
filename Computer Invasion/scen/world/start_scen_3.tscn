@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsnc2360770ua"]
+
+[ext_resource type="PackedScene" uid="uid://b7gdxeyyxox2" path="res://model/Boos_Room.blend" id="1_0ud43"]
+[ext_resource type="PackedScene" uid="uid://unlrh2s0e81g" path="res://model/Woll/wall2.blend" id="2_plyis"]
+
+[node name="start_scen_3" type="Node3D"]
+
+[node name="Boos_Room" parent="." instance=ExtResource("1_0ud43")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="wall2" parent="." instance=ExtResource("2_plyis")]
+transform = Transform3D(1.5, 0, 0, 0, 3, 0, 0, 0, 1.5, -1.21157, 3.14003, 6.28001)
+
+[node name="wall7" parent="." instance=ExtResource("2_plyis")]
+transform = Transform3D(1.5, 0, 0, 0, 2, 0, 0, 0, 1.5, -8.41157, 2.14003, 2.28001)
+
+[node name="wall3" parent="." instance=ExtResource("2_plyis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88843, 1.14003, 2.28001)
+
+[node name="wall6" parent="." instance=ExtResource("2_plyis")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.888, 2.7, -6.12)
+
+[node name="wall4" parent="." instance=ExtResource("2_plyis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.21157, 1.24003, -5.71999)
+
+[node name="wall5" parent="." instance=ExtResource("2_plyis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.112, 1.2, -9.72)
