@@ -1,20 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://smjoynr2pxas"]
+[gd_scene load_steps=7 format=3 uid="uid://smjoynr2pxas"]
 
 [ext_resource type="PackedScene" uid="uid://bwx184vfo0y47" path="res://model/enimes/spider_leg.blend" id="1_uy2u2"]
+[ext_resource type="Script" path="res://scripts/enemy_script/spider/spider_leg_data.gd" id="2_a7blq"]
 [ext_resource type="Script" path="res://scripts/enemy_script/spider/spider_leg.gd" id="2_b5pxu"]
-[ext_resource type="Script" path="res://scripts/enemy_script/spider/spider_leg_data.gd" id="2_kknlo"]
-[ext_resource type="PackedScene" uid="uid://bmaheul04wlvr" path="res://scen/Enemy_scen/spider/step_point.tscn" id="3_h0blu"]
-[ext_resource type="Script" path="res://scripts/enemy_script/spider/target_point.gd" id="3_shukh"]
+[ext_resource type="PackedScene" uid="uid://bmaheul04wlvr" path="res://scen/Enemy_scen/spider/step_point.tscn" id="4_hooet"]
+[ext_resource type="Script" path="res://scripts/enemy_script/spider/target_point.gd" id="5_x2pmf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lfdjj"]
+size = Vector3(0.5, 0.5, 0.5)
 
 [node name="spider_leg" instance=ExtResource("1_uy2u2")]
-transform = Transform3D(1, 0, 0, 0, 0.817145, -0.576432, 0, 0.576432, 0.817145, 0, 0, 0)
-script = ExtResource("2_kknlo")
+script = ExtResource("2_a7blq")
 
 [node name="Арматура" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.535995, -0.759821)
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 1, 0)
 
 [node name="Skeleton3D" parent="Арматура" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52925, 0)
 bones/0/position = Vector3(0.00347497, 0.000474975, 0.000474975)
 bones/1/enabled = false
 bones/1/rotation = Quaternion(-0.00376028, 1.93124e-05, 0.00437518, 0.999983)
@@ -22,16 +23,29 @@ bones/2/rotation = Quaternion(0.000147004, 1.40047e-09, -0.00526102, 0.999986)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(-2.45033e-05, -0.0139669, 0.00175421, 0.999901)
 
+[node name="Сфера" parent="Арматура/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+
 [node name="SkeletonIK3D" type="SkeletonIK3D" parent="Арматура/Skeleton3D" index="1"]
 process_priority = 1
 root_bone = &"Кость"
 tip_bone = &"Кость.004"
-target_node = NodePath("../../../Marker3D")
+use_magnet = true
+magnet = Vector3(0, 10, -7.87)
+target_node = NodePath("../../../targetMarker")
 script = ExtResource("2_b5pxu")
 
-[node name="Marker3D" type="Marker3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0236897, -2.07814, -2.89671)
-script = ExtResource("3_shukh")
+[node name="StepPoint" parent="." index="1" instance=ExtResource("4_hooet")]
+transform = Transform3D(0.766045, 0.642787, 0, -0.642788, 0.766044, 0, 0, 0, 1, 3.3, 4, -4)
 
-[node name="StepPoint" parent="." index="2" instance=ExtResource("3_h0blu")]
-transform = Transform3D(0.996195, -0.086797, 0.00789915, 0.0712189, 0.862929, 0.500282, -0.0502394, -0.497816, 0.865826, 0, 0, -3.778)
+[node name="targetMarker" type="Marker3D" parent="." index="2" node_paths=PackedStringArray("step_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+top_level = true
+script = ExtResource("5_x2pmf")
+step_distance = 1.0
+step_point = NodePath("../StepPoint")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="targetMarker" index="0"]
+visible = false
+mesh = SubResource("BoxMesh_lfdjj")
+skeleton = NodePath("")

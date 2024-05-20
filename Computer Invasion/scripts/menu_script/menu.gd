@@ -3,15 +3,16 @@ class_name menu
 
 signal settings_choce
 
-const URL : String = "user://PlayerData.tres"
+const URL : String = "user://PlayerData.dat"
 @onready var continion = $CenterContainer/MarginContainer/VBoxContainer/continion
 
 func _ready():
-	if not ResourceLoader.exists(URL):
+	print(str(ResourceLoader.exists(URL)))
+	if not FileAccess.file_exists(URL):
 		continion.disabled = true
 
 func _on_button_pressed():
-	if ResourceLoader.exists(URL):
+	if FileAccess.file_exists(URL):
 		DirAccess.remove_absolute(URL)
 	
 	get_tree().change_scene_to_file("res://scen/demo_wold.tscn")

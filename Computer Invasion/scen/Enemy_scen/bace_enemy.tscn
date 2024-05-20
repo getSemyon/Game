@@ -1,50 +1,87 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwuso0hklr22x"]
+[gd_scene load_steps=10 format=3 uid="uid://cwuso0hklr22x"]
 
 [ext_resource type="Script" path="res://scripts/enemy_script/enemy.gd" id="1_2nbqk"]
 [ext_resource type="PackedScene" uid="uid://crp3673opv5dc" path="res://model/enimes/papka.blend" id="2_f3icd"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ucak"]
-albedo_color = Color(0.803922, 0.14902, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_su3r2"]
-material = SubResource("StandardMaterial3D_2ucak")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xv0oh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k442a"]
 
+[sub_resource type="Curve" id="Curve_2rlm6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.991304, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uxak3"]
+curve = SubResource("Curve_2rlm6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vchhu"]
+lifetime_randomness = 0.1
+radial_velocity_min = 1.0
+radial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 50.0
+radial_accel_max = 100.0
+damping_min = 30.0
+damping_max = 70.0
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_uxak3")
+color = Color(1, 0, 0, 1)
+hue_variation_min = -0.01
+hue_variation_max = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_123uo"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_lluib"]
+material = SubResource("StandardMaterial3D_123uo")
+
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_2nbqk")
-heal_export = 10
+heal_export = 1
 damage_export = 1
 speed_export = 3.0
 time_to_next_attack_export = 1.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("SphereMesh_su3r2")
+[node name="HelperNode" type="Node3D" parent="."]
+
+[node name="TargetArea" type="Area3D" parent="HelperNode"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1.7, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HelperNode/TargetArea"]
+shape = SubResource("SphereShape3D_xv0oh")
+
+[node name="Marker3D" type="Marker3D" parent="HelperNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="HelperNode"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1, -1)
+mesh = SubResource("BoxMesh_k442a")
+skeleton = NodePath("../..")
+
+[node name="papka" parent="HelperNode" instance=ExtResource("2_f3icd")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 1, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="HelperNode"]
+
+[node name="ParticalDae" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1, 0)
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.52
+process_material = SubResource("ParticleProcessMaterial_vchhu")
+draw_pass_1 = SubResource("BoxMesh_lluib")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_xv0oh")
 
-[node name="TargetArea" type="Area3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1.7, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TargetArea"]
-shape = SubResource("SphereShape3D_xv0oh")
-
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1, -1)
-mesh = SubResource("BoxMesh_k442a")
-
-[node name="papka" parent="." instance=ExtResource("2_f3icd")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 1, 0)
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[connection signal="body_entered" from="TargetArea" to="." method="_on_target_area_body_entered"]
-[connection signal="body_exited" from="TargetArea" to="." method="_on_target_area_body_exited"]
+[connection signal="body_entered" from="HelperNode/TargetArea" to="." method="_on_target_area_body_entered"]
+[connection signal="body_exited" from="HelperNode/TargetArea" to="." method="_on_target_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

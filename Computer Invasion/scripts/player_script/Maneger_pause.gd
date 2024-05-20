@@ -4,6 +4,9 @@ class_name maneger_pause
 var pause : bool = false
 @onready var pause_menu___setting = $"../pause_menu - setting"
 
+func _ready():
+	get_tree().paused = pause
+
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		pause = !pause

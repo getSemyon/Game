@@ -2,9 +2,6 @@ extends Node
 
 const URL : String = "user://PlayerData.dat"
 
-func _ready():
-	loading()
-
 func saving():
 	var file = FileAccess.open(URL, FileAccess.WRITE)
 	

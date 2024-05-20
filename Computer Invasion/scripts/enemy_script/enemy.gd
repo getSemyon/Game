@@ -31,7 +31,10 @@ var state = IDEL
 # hidden var
 var lerp_rotate : float = 10.0
 
-@onready var nav_agent = $NavigationAgent3D
+@onready var nav_agent = $HelperNode/NavigationAgent3D
+@onready var partical_dae = $ParticalDae
+@onready var timer = $Timer
+@onready var helper_node = $HelperNode
 
 
 func _ready():
@@ -78,7 +81,9 @@ func reset_time_attack():
 	attack_periude = time_to_next_attack
 
 func die():
-	queue_free()
+	helper_node.queue_free()
+	partical_dae.emitting = true
+	timer.start()
 	
 func _on_target_area_body_entered(body):
 	if body is Player:
@@ -88,3 +93,7 @@ func _on_target_area_body_entered(body):
 func _on_target_area_body_exited(body):
 	if body is Player:
 		sleep()
+
+
+func _on_timer_timeout():
+	queue_free()

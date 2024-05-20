@@ -1,10 +1,21 @@
 extends Node3D
+class_name spider_leg
 
-@onready var marker_3d = $Marker3D
+@onready var targetMarker = $targetMarker
 
-@export var adjacent_target: Node3D
-@export var opposite_target: Node3D
+@export var leg_mirov : bool
+@onready var step_point = $StepPoint
+
+@export var adjacent_target: spider_leg
+@export var opposite_target: spider_leg
 
 func _ready():
-	marker_3d.adjacent_target = adjacent_target.get_child(1)
-	marker_3d.opposite_target = opposite_target.get_child(1)
+	if leg_mirov:
+		step_point.rotation.z *= -1
+		step_point.position.x *= -1
+	
+	targetMarker.adjacent_target = adjacent_target.get_marker()
+	targetMarker.opposite_target = opposite_target.get_marker()
+
+func get_marker():
+	return targetMarker 

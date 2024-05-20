@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4x1ky6lc5c0a"]
+[gd_scene load_steps=7 format=3 uid="uid://b4x1ky6lc5c0a"]
 
 [ext_resource type="Script" path="res://scripts/player_script/PropartiBar.gd" id="1_wsxdn"]
+[ext_resource type="Theme" uid="uid://r02ln6x3oqn2" path="res://shader/Theme_game.tres" id="2_d4q0g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h4suw"]
 
@@ -38,6 +39,22 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ptvl3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_d5q5b")
 value = 70.0
 show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_d4q0g")
+theme_override_colors/font_color = Color(0.968587, 5.67943e-06, 7.70092e-07, 1)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4

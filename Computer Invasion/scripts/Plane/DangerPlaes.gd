@@ -7,6 +7,12 @@ var time_attack = 0
 var player : Player = null
 @export var damage = 10
 
+@onready var gpu_particles_3d = $GPUParticles3D
+
+func _ready():
+	var P = roundi(scale.x * scale.y)
+	gpu_particles_3d.amount *= gpu_particles_3d.amount % P 
+
 func _process(delta):
 	if time_attack > 0:
 		time_attack -= delta

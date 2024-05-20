@@ -1,0 +1,175 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbyovxw6t5qee"]
+
+[ext_resource type="PackedScene" uid="uid://btslebrk7a4a2" path="res://scen/Enemy_scen/NewEnemy/frame_enemy.tscn" id="1_qxjrc"]
+[ext_resource type="Script" path="res://scripts/enemy_script/NewEnemyScript/StatePapka.gd" id="2_8yvhs"]
+[ext_resource type="PackedScene" uid="uid://crp3673opv5dc" path="res://model/enimes/papka.blend" id="3_bfun5"]
+
+[sub_resource type="Animation" id="Animation_1cvyl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("papka:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("papka/Сфера:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.4, -0.3, 1.1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("papka/Сфера_001:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.4, -0.3, -1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_4br44"]
+resource_name = "alert"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("papka/Сфера:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.2, -0.3, 1.1), Vector3(0.4, -0.3, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("papka/Сфера_001:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.4, -0.3, -1.1), Vector3(0.2, -0.3, -1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_ie5v3"]
+resource_name = "attack"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("papka/Сфера:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.4, -0.3, 1.1), Vector3(0.8, -0.1, 1), Vector3(0.4, -0.3, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("papka/Сфера_001:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.4, -0.3, -1.1), Vector3(0.4, -0.3, -1.1), Vector3(0.8, -0.1, -0.9), Vector3(0.4, -0.3, -1.1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_attack"
+}, {
+"args": [],
+"method": &"_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_eqvpl"]
+resource_name = "idel"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("papka:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fav7x"]
+_data = {
+"RESET": SubResource("Animation_1cvyl"),
+"alert": SubResource("Animation_4br44"),
+"attack": SubResource("Animation_ie5v3"),
+"idel": SubResource("Animation_eqvpl")
+}
+
+[node name="Papka" instance=ExtResource("1_qxjrc")]
+script = ExtResource("2_8yvhs")
+heal = 20
+damage = 5
+speed = 4
+
+[node name="Collision_Helper" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="papka" parent="Collision_Helper" index="0" instance=ExtResource("3_bfun5")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
+
+[node name="Сфера" parent="Collision_Helper/papka" index="0"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.4, -0.3, 1.1)
+
+[node name="Сфера_001" parent="Collision_Helper/papka" index="1"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.4, -0.3, -1.1)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Collision_Helper" index="1"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Collision_Helper" index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_fav7x")
+}
+
+[connection signal="area_entered" from="Collision_Helper/AreaAttack" to="." method="_on_area_attack_area_entered"]
+[connection signal="area_exited" from="Collision_Helper/AreaAttack" to="." method="_on_area_attack_area_exited"]
+[connection signal="area_entered" from="Collision_Helper/AreaTarget" to="." method="_on_area_target_area_entered"]
+[connection signal="area_exited" from="Collision_Helper/AreaTarget" to="." method="_on_area_target_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Collision_Helper/papka"]

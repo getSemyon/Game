@@ -1,1 +1,5 @@
-extends CharacterBody3D
+extends Node3D
+
+func _process(delta):
+	position.x += delta
+	pass

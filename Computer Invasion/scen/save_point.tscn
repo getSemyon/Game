@@ -1,23 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://iurp4oio3res"]
+[gd_scene load_steps=9 format=3 uid="uid://iurp4oio3res"]
 
 [ext_resource type="Script" path="res://scripts/SavePoint/SavePoint.gd" id="1_7mtc3"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_e3635"]
-size = Vector3(2, 0.1, 2)
+[ext_resource type="PackedScene" uid="uid://unlrh2s0e81g" path="res://model/Woll/wall2.blend" id="2_2058m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5spqt"]
 size = Vector3(1, 2, 1)
 
+[sub_resource type="Gradient" id="Gradient_ovec5"]
+colors = PackedColorArray(0, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vsmgh"]
+gradient = SubResource("Gradient_ovec5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6q17g"]
+emission_shape_offset = Vector3(0, -0.795, 0)
+gravity = Vector3(0, 1, 0)
+color = Color(1, 1, 1, 0)
+color_ramp = SubResource("GradientTexture1D_vsmgh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsixm"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0)
+backlight_enabled = true
+backlight = Color(0.556863, 1, 1, 1)
+refraction_texture_channel = 3
+grow_amount = 0.01
+
+[sub_resource type="TorusMesh" id="TorusMesh_bqhrt"]
+material = SubResource("StandardMaterial3D_hsixm")
+outer_radius = 0.511
+
 [node name="SavePoint" type="Node3D"]
 script = ExtResource("1_7mtc3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_e3635")
+[node name="wall2" parent="." instance=ExtResource("2_2058m")]
+transform = Transform3D(1, 0, 0, 0, 0.05, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_5spqt")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+lifetime = 2.0
+visibility_aabb = AABB(-0.9, -1, -1, 1.8, 2, 2)
+process_material = SubResource("ParticleProcessMaterial_6q17g")
+draw_pass_1 = SubResource("TorusMesh_bqhrt")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://btslebrk7a4a2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cxkan"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ma063"]
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_n7icr"]
+radius = 10.0
+
+[sub_resource type="Curve" id="Curve_hqpcs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.991304, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ky6ck"]
+curve = SubResource("Curve_hqpcs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qcsl1"]
+lifetime_randomness = 0.1
+radial_velocity_min = 1.0
+radial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 50.0
+radial_accel_max = 100.0
+damping_min = 30.0
+damping_max = 70.0
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_ky6ck")
+color = Color(1, 0, 0, 1)
+hue_variation_min = -0.01
+hue_variation_max = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7jan"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_fv3gq"]
+material = SubResource("StandardMaterial3D_b7jan")
+
+[node name="FrameEnemy" type="CharacterBody3D"]
+
+[node name="Collision_Helper" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_cxkan")
+
+[node name="AttackPoint" type="Marker3D" parent="Collision_Helper"]
+
+[node name="AreaAttack" type="Area3D" parent="Collision_Helper"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision_Helper/AreaAttack"]
+shape = SubResource("SphereShape3D_ma063")
+
+[node name="AreaTarget" type="Area3D" parent="Collision_Helper"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision_Helper/AreaTarget"]
+shape = SubResource("SphereShape3D_n7icr")
+
+[node name="ParticalDae" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.52
+process_material = SubResource("ParticleProcessMaterial_qcsl1")
+draw_pass_1 = SubResource("BoxMesh_fv3gq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true

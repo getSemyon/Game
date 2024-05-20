@@ -1,19 +1,24 @@
 extends Marker3D
 
-@onready var step_point = $"../StepPoint"
-var step_target : Node3D = step_point.get_child(0)
-
 @export var step_distance: float = 3.0
 
-@export var adjacent_target: Node3D
-@export var opposite_target: Node3D
+@export var step_point : Node3D
+var step_target : Node3D
+
+var adjacent_target: Marker3D
+var opposite_target: Marker3D
 
 var is_stepping := false
 
+func _ready():
+	step_target = step_point.get_child(0)
+	step()
+
 func _process(delta):
-	if !is_stepping && !adjacent_target.is_stepping && abs(global_position.distance_to(step_target.global_position)) > step_distance:
-		step()
-		opposite_target.step()
+	if adjacent_target != null && opposite_target != null:
+		if !is_stepping && !adjacent_target.is_stepping && abs(global_position.distance_to(step_target.global_position)) > step_distance:
+			step()
+			opposite_target.step()
 
 func step():
 	var target_pos = step_target.global_position
