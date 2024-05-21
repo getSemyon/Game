@@ -18,7 +18,7 @@ transform = Transform3D(1.5, 0, 0, 0, 2, 0, 0, 0, 1.5, -8.41157, 2.14003, 2.2800
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88843, 1.14003, 2.28001)
 
 [node name="wall6" parent="." instance=ExtResource("2_plyis")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.888, 2.7, -6.12)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.888, 2.1, -6.12)
 
 [node name="wall4" parent="." instance=ExtResource("2_plyis")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.21157, 1.24003, -5.71999)

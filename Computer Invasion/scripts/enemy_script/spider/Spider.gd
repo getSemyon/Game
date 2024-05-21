@@ -41,13 +41,8 @@ func _process(delta):
 	var distance = transform.basis.y.dot(target_pos - position)
 	
 	var new_position = position + transform.basis.y * distance
-	new_position.y += 0.5
+	#new_position.y += 0.5
 	position = lerp(position, new_position, move_speed * delta)
-	_handle_movement(delta)
-	
-func _handle_movement(delta):
-	translate(Vector3(-1, 0, 0) * move_speed * delta)
-	#rotate_object_local(Vector3.UP, 1 * turn_speed * delta)
 	
 func _basis_from_normal(normal: Vector3) -> Basis:
 	var result = Basis()
@@ -61,3 +56,9 @@ func _basis_from_normal(normal: Vector3) -> Basis:
 	result.z *= scale.z 
 	
 	return result
+
+func progress_data_create(heal : int):
+	progress_bar.init_health(heal)
+
+func progress_bar_update(heal : int):
+	progress_bar._set_health(heal)

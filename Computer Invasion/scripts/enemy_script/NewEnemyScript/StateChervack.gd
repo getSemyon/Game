@@ -4,6 +4,8 @@ extends enemyHaracter
 @onready var path = $Collision_Helper/Path3D
 @onready var path_follow = %PathFollow3D
 @onready var head = %Head
+@onready var partical_dae = $ParticalDae
+@onready var timer = $Timer
 
 #move poram
 var targetPoint : Vector3 = Vector3.ZERO
@@ -11,6 +13,7 @@ var roundInt : int
 var velosity_in : Vector3 = Vector3(-1, 0,0)
 var velosity_out : Vector3 = Vector3(1, 0,0)
 var progres_old_curve : Vector3
+@onready var collision_helper = $Collision_Helper
 
 #bouns param
 @onready var bounds = $Collision_Helper/Bounds
@@ -85,6 +88,11 @@ func _harassment(delta):
 			temp_transform = bound.global_transform
 			bound.global_transform = old_transform
 			old_transform = temp_transform
+
+func _death():
+	collision_helper.queue_free()
+	partical_dae.emitting = true
+	timer.start()
 
 #Tareget Area
 func _on_area_target_area_entered(area):

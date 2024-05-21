@@ -13,6 +13,9 @@ var target : Player
 func _attack():
 	target.take_damege(damage)
 
+func _shoot():
+	pass
+
 func _take_damege(dm : int):
 	heal -= dm
 	if heal <= 0:

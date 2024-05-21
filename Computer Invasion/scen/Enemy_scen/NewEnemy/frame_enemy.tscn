@@ -41,7 +41,7 @@ material = SubResource("StandardMaterial3D_b7jan")
 [node name="Collision_Helper" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_cxkan")
 
-[node name="AttackPoint" type="Marker3D" parent="Collision_Helper"]
+[node name="AttackPoint" type="MeshInstance3D" parent="Collision_Helper"]
 
 [node name="AreaAttack" type="Area3D" parent="Collision_Helper"]
 collision_layer = 0

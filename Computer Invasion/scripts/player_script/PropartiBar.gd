@@ -9,9 +9,7 @@ func _set_health(new_proparti_value):
 	var prev_health = proparti_value
 	proparti_value = min(max_value, new_proparti_value)
 	value = proparti_value
-	if proparti_value <= 0:
-		print("You dead")
-		
+	
 	if proparti_value < prev_health:
 		timer.start()
 	else:

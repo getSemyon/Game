@@ -1,0 +1,71 @@
+[gd_scene load_steps=14 format=3 uid="uid://d2414fyj1fo8e"]
+
+[ext_resource type="Script" path="res://scripts/enemy_script/NewEnemyScript/boss_melee.gd" id="1_irlnc"]
+[ext_resource type="Shader" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="1_wysfr"]
+[ext_resource type="Shader" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="2_qdreq"]
+[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://addons/GPUTrail-main/defaults/texture.tres" id="3_85p7j"]
+[ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://addons/GPUTrail-main/defaults/curve.tres" id="4_tm035"]
+[ext_resource type="Script" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="5_021xh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bfbh0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fe85b"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4ny24"]
+material = SubResource("StandardMaterial3D_fe85b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_61dsi"]
+shader = ExtResource("1_wysfr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ok7o7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_qdreq")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 40
+shader_parameter/color_ramp = ExtResource("3_85p7j")
+shader_parameter/curve = ExtResource("4_tm035")
+
+[sub_resource type="QuadMesh" id="QuadMesh_rxtxw"]
+material = SubResource("ShaderMaterial_ok7o7")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2vv82"]
+radius = 0.6
+
+[node name="Boss_melee" type="RigidBody3D"]
+script = ExtResource("1_irlnc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bfbh0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_4ny24")
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="."]
+amount = 40
+lifetime = 40.0
+explosiveness = 1.0
+fixed_fps = 0
+process_material = SubResource("ShaderMaterial_61dsi")
+draw_pass_1 = SubResource("QuadMesh_rxtxw")
+script = ExtResource("5_021xh")
+length = 40
+color_ramp = ExtResource("3_85p7j")
+curve = ExtResource("4_tm035")
+_defaults_have_been_set = true
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_2vv82")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

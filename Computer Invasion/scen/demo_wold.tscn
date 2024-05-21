@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://drs6xh7pwy5of" path="res://scen/Items_scen/item_proparti.tscn" id="8_v5sdq"]
 [ext_resource type="PackedScene" uid="uid://yedrvpri7r2y" path="res://scen/Plane/triger_zone.tscn" id="9_a0uxc"]
 [ext_resource type="PackedScene" uid="uid://d38kswk0y5h57" path="res://scen/Player/player.tscn" id="9_yb4ga"]
-[ext_resource type="PackedScene" uid="uid://18eo7ov3i3k0" path="res://scen/Enemy_scen/spider/create_point_enemy.tscn" id="10_whljt"]
 [ext_resource type="PackedScene" uid="uid://iurp4oio3res" path="res://scen/save_point.tscn" id="11_4am2n"]
+[ext_resource type="PackedScene" uid="uid://bmwo4y612msjj" path="res://scen/Enemy_scen/NewEnemy/Boss.tscn" id="11_koghq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f5b8"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -85,7 +85,7 @@ count_proparti_export = 50
 item_rotate = "res://model/items/Heel.blend"
 
 [node name="Player" parent="." instance=ExtResource("9_yb4ga")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.96683, 3.32398, -1)
 heal_export = 100
 damage_export = 10
 speed_export = 10.0
@@ -150,12 +150,11 @@ transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 200, 0, -30, 0)
 [node name="triger_zone2" parent="." instance=ExtResource("9_a0uxc")]
 transform = Transform3D(50, 0, 0, 0, 20, 0, 0, 0, 1, 1, 0, -85)
 
-[node name="Create_Point_enemy" parent="." instance=ExtResource("10_whljt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4, 1.5, -4)
-enemy = "res://scen/Enemy_scen/NewEnemy/chervack.tscn"
-
 [node name="SavePoint" parent="." instance=ExtResource("11_4am2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, 1)
+
+[node name="Boss" parent="." instance=ExtResource("11_koghq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.68281, 2.5, -1.54841)
 
 [connection signal="interacted" from="Button" to="Door" method="_on_button_interacted"]
 [connection signal="enter_triger" from="triger_zone" to="Player" method="_on_triger_zone_enter_triger"]

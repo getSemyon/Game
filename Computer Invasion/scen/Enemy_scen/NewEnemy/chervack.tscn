@@ -1220,9 +1220,6 @@ transform = Transform3D(1.99996, 0, 5.67525e-06, 0, 2, 0, -8.7421e-08, 0, 1.9999
 mesh = SubResource("ArrayMesh_pr535")
 skeleton = NodePath("")
 
-[node name="AttackPoint" type="Marker3D" parent="Collision_Helper"]
-visible = false
-
 [node name="Path3D" type="Path3D" parent="Collision_Helper"]
 curve = SubResource("Curve3D_831kn")
 
