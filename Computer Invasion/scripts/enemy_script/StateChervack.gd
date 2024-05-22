@@ -1,5 +1,5 @@
 extends enemyHaracter
-
+class_name  StateChervack
 #item enemy
 @onready var path = $Collision_Helper/Path3D
 @onready var path_follow = %PathFollow3D
@@ -26,7 +26,16 @@ var time_next_attack : float = 0.25
 var time : float = 0
 
 func _ready():
+	randomize()
 	roundInt = randi_range(5,10)
+	
+	var curve_old : Curve3D = path.curve
+	
+	var new_curve = Curve3D.new()
+	new_curve.add_point(curve_old.get_point_position(0), curve_old.get_point_in(0), curve_old.get_point_out(0))
+	new_curve.add_point(curve_old.get_point_position(1), curve_old.get_point_in(1), curve_old.get_point_out(1))
+	
+	path.curve = new_curve
 
 func _process(delta): 
 	position_holver = head.global_position
@@ -43,8 +52,15 @@ func _process(delta):
 	if path_follow.progress_ratio >= 0.95:
 		_create_point()
 
+func _move(delta):
+	var p2 = global_position
+	var p0 = targetPoint
+	var p1 = (p2 - p0) / 2
+	
+	var q0 = p0.lerp(p1, 1)
+	var q1 = p1.lerp(p2, 1)
+
 func _create_point():
-	print(str(state))
 	if state == State.IDEL:
 		targetPoint = global_position + Vector3(randi_range(-roundInt, roundInt), randi_range(-roundInt, roundInt), randi_range(-roundInt, roundInt))
 		if target != null:

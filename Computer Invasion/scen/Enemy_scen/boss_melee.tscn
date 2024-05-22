@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://d2414fyj1fo8e"]
 
-[ext_resource type="Script" path="res://scripts/enemy_script/NewEnemyScript/boss_melee.gd" id="1_irlnc"]
+[ext_resource type="Script" path="res://scripts/enemy_script/boss_melee.gd" id="1_irlnc"]
 [ext_resource type="Shader" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="1_wysfr"]
 [ext_resource type="Shader" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="2_qdreq"]
 [ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://addons/GPUTrail-main/defaults/texture.tres" id="3_85p7j"]

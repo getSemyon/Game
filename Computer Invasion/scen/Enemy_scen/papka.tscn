@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dbyovxw6t5qee"]
 
-[ext_resource type="PackedScene" uid="uid://btslebrk7a4a2" path="res://scen/Enemy_scen/NewEnemy/frame_enemy.tscn" id="1_qxjrc"]
-[ext_resource type="Script" path="res://scripts/enemy_script/NewEnemyScript/StatePapka.gd" id="2_8yvhs"]
+[ext_resource type="PackedScene" uid="uid://btslebrk7a4a2" path="res://scen/Enemy_scen/frame_enemy.tscn" id="1_qxjrc"]
+[ext_resource type="Script" path="res://scripts/enemy_script/StatePapka.gd" id="2_8yvhs"]
 [ext_resource type="PackedScene" uid="uid://crp3673opv5dc" path="res://model/enimes/papka.blend" id="3_bfun5"]
 
 [sub_resource type="Animation" id="Animation_1cvyl"]
