@@ -13,12 +13,11 @@ func _ready():
 func _on_area_3d_area_entered(area):
 	if area.get_parent() is Player:
 		player = area.get_parent()
-		player.take_damege(damege)
+		player._take_damege(damege)
 		queue_free()
 
 func _on_area_3d_body_entered(body):
 	if body != self:
-		print(body.name)
 		queue_free()
 
 func _on_timer_timeout():

@@ -14,6 +14,7 @@ var velosity_in : Vector3 = Vector3(-1, 0,0)
 var velosity_out : Vector3 = Vector3(1, 0,0)
 var progres_old_curve : Vector3
 @onready var collision_helper = $Collision_Helper
+@onready var area_damage = $AreaDamage
 
 #bouns param
 @onready var bounds = $Collision_Helper/Bounds
@@ -38,19 +39,20 @@ func _ready():
 	path.curve = new_curve
 
 func _process(delta): 
-	position_holver = head.global_position
-	path_follow.progress += speed * delta
-	
-	if isAttack:
-		if time <= 0:
-			target.take_damege(damage)
-			time = time_next_attack
-		time -= delta
-	
-	_harassment(delta)
-	
-	if path_follow.progress_ratio >= 0.95:
-		_create_point()
+	if !isDead:
+		position_holver = head.global_position
+		path_follow.progress += speed * delta
+		
+		if isAttack:
+			if time <= 0:
+				target._take_damege(damage)
+				time = time_next_attack
+			time -= delta
+		
+		_harassment(delta)
+		
+		if path_follow.progress_ratio >= 0.95:
+			_create_point()
 
 func _move(delta):
 	var p2 = global_position
@@ -106,6 +108,7 @@ func _harassment(delta):
 			old_transform = temp_transform
 
 func _death():
+	area_damage.queue_free()
 	collision_helper.queue_free()
 	partical_dae.emitting = true
 	timer.start()

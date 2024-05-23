@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt150bps7kyae"]
+
+[ext_resource type="PackedScene" uid="uid://c80muqyvogyom" path="res://scen/missile and bomb/rocket.tscn" id="1_b52le"]
+[ext_resource type="Script" path="res://scripts/missele-bomb_script/bomb.gd" id="2_k0n0u"]
+
+[node name="Bomb" instance=ExtResource("1_b52le")]
+script = ExtResource("2_k0n0u")
+view = "res://model/wepon/bomb.blend"
+damege = 25
+
+[node name="Timer" parent="." index="3"]
+wait_time = 3.0

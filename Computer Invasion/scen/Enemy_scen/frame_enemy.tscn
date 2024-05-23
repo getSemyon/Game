@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://btslebrk7a4a2"]
+[gd_scene load_steps=10 format=3 uid="uid://btslebrk7a4a2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cxkan"]
 
@@ -7,6 +7,9 @@ radius = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n7icr"]
 radius = 10.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o0f1e"]
+radius = 0.8
 
 [sub_resource type="Curve" id="Curve_hqpcs"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.991304, 0), 0.0, 0.0, 0, 0]
@@ -39,6 +42,7 @@ material = SubResource("StandardMaterial3D_b7jan")
 [node name="FrameEnemy" type="CharacterBody3D"]
 
 [node name="Collision_Helper" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("SphereShape3D_cxkan")
 
 [node name="AttackPoint" type="MeshInstance3D" parent="Collision_Helper"]
@@ -58,6 +62,14 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision_Helper/AreaTarget"]
 shape = SubResource("SphereShape3D_n7icr")
+
+[node name="AreaDamage" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaDamage"]
+shape = SubResource("SphereShape3D_o0f1e")
 
 [node name="ParticalDae" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://bd2ebcmqxd0y8"]
+[gd_scene load_steps=76 format=3 uid="uid://bd2ebcmqxd0y8"]
 
 [ext_resource type="Script" path="res://scripts/enemy_script/StateChervack.gd" id="2_pprm4"]
 
@@ -1105,6 +1105,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_uks8f")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_n4b3k"]
+
 [sub_resource type="Curve" id="Curve_hqpcs"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.991304, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -1140,10 +1142,11 @@ damage = 5
 speed = 5
 
 [node name="Collision_Helper" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("SphereShape3D_cxkan")
 
 [node name="Bounds" type="Node3D" parent="Collision_Helper"]
-transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, 1.4, 0, -1)
+transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, 1.4, 1, -1)
 
 [node name="Bound_0" type="MeshInstance3D" parent="Collision_Helper/Bounds"]
 transform = Transform3D(1.99996, 0, 5.67525e-06, 0, 2, 0, -8.7421e-08, 0, 1.99996, 9.53674e-07, 0, 5.91936)
@@ -1221,6 +1224,7 @@ mesh = SubResource("ArrayMesh_pr535")
 skeleton = NodePath("")
 
 [node name="Path3D" type="Path3D" parent="Collision_Helper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 curve = SubResource("Curve3D_831kn")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Collision_Helper/Path3D"]
@@ -1328,6 +1332,16 @@ unique_name_in_owner = true
 transform = Transform3D(-0.400006, 0, -2.98023e-08, 0, 0.400002, 0, 4.47035e-08, 0, -0.400008, 0, 0, 0)
 mesh = SubResource("ArrayMesh_i6d3o")
 skeleton = NodePath("")
+
+[node name="AreaDamage" type="Area3D" parent="."]
+transform = Transform3D(-4.37095e-08, 0, 0.999961, 0, 0.999994, 0, -0.999957, 0, -4.37097e-08, 0, 0, -1)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaDamage"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -1.42109e-14, 0, 3.5, -4.76837e-07, 0, 1.50006)
+shape = SubResource("SphereShape3D_n4b3k")
 
 [node name="ParticalDae" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

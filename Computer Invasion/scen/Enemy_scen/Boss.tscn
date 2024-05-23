@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmwo4y612msjj"]
+[gd_scene load_steps=6 format=3 uid="uid://bmwo4y612msjj"]
 
 [ext_resource type="PackedScene" uid="uid://dbyovxw6t5qee" path="res://scen/Enemy_scen/papka.tscn" id="1_mvcuf"]
 [ext_resource type="Script" path="res://scripts/enemy_script/StateBoss.gd" id="2_vt5sx"]
 [ext_resource type="PackedScene" uid="uid://b4x1ky6lc5c0a" path="res://scen/Player/progress_bar.tscn" id="3_o4cbi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xnu14"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q8w38"]
 
 [node name="Boss" instance=ExtResource("1_mvcuf")]
 collision_layer = 4
@@ -15,6 +17,7 @@ damage = 15
 speed = 3
 
 [node name="Collision_Helper" parent="." index="0"]
+unique_name_in_owner = false
 shape = SubResource("BoxShape3D_xnu14")
 
 [node name="papka" parent="Collision_Helper" index="0"]
@@ -25,6 +28,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.4)
 
 [node name="AreaAttack" parent="Collision_Helper" index="4"]
 transform = Transform3D(3, 0, 0, 0, 1.5, 0, 0, 0, 1.4, 0, 0.9, -0.6)
+
+[node name="AreaDamage" parent="." index="1"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1, 0, 1.6, 0.2)
+
+[node name="CollisionShape3D" parent="AreaDamage" index="0"]
+shape = SubResource("SphereShape3D_q8w38")
 
 [node name="ProgressBar" parent="." index="3" instance=ExtResource("3_o4cbi")]
 custom_minimum_size = Vector2(400, 30)

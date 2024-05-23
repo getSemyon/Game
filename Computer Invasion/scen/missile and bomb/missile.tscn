@@ -8,6 +8,7 @@
 
 [node name="Missile" type="CharacterBody3D"]
 script = ExtResource("1_ullvo")
+damege = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -18,9 +19,12 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_4x8ft")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 shape = SubResource("SphereShape3D_i7og1")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

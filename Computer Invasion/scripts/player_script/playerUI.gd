@@ -17,6 +17,7 @@ var speed : float = speed_export
 var armor : int = armor_export
 
 # atack parametr
+var isShoot = false
 var point_shoot : Node3D
 var scen_point : Node3D
 var camera_angel : Vector3 = Vector3.ZERO
@@ -26,8 +27,8 @@ var wepon_list = {
 	0 : ["NoneWepon", true],
 	1 : ["Blater", false, "res://scen/missile and bomb/missile.tscn"],
 	2 : ["Hook", false],
-	3 : ["Rocket", false, "res://scen/missile and bomb/physic_missile.tscn"],
-	4 : ["Bomb", false, "res://scen/missile and bomb/physic_missile.tscn"]
+	3 : ["Rocket", false, "res://scen/missile and bomb/rocket.tscn"],
+	4 : ["Bomb", true, "res://scen/missile and bomb/bomb.tscn"]
 }
 var wepon_check : int = 0
 
@@ -51,7 +52,7 @@ var line
 var start_dealog = preload("res://dialoge/DialogeGame/StartDealog.gd")
 
 # function
-func take_damege(damege_enemy : int):
+func _take_damege(damege_enemy : int):
 	print("damege")
 	heal -= damege_enemy
 	player_interface.HealProparti(-damege_enemy)
@@ -62,25 +63,22 @@ func take_damege(damege_enemy : int):
 func attack():
 	if wepon_list[wepon_check].size() == 3:
 		var m = load(wepon_list[wepon_check][2]).instantiate()
-		#m.make_unique()
 		
-		if m is Rocket_Bomb_Rigenbody:
-			if wepon_check == WEPONS.wepons_name.Rocket:
-				m.type = 0
-			else :
-				m.type = 0
-			
-			m.position = point_shoot.global_position
-			m.transform.basis = global_transform.basis
-			m.rotation.x = camera_angel.x
-			m.impulse()
-			get_tree().get_root().add_child(m)
-			
-		elif m is Missile:
+		if m is Missile:
 			m.position = point_shoot.global_position
 			m.transform.basis = global_transform.basis
 			m.rotation.x = camera_angel.x
 			get_tree().get_root().add_child(m)
+		
+		elif m is Rocket or m is Bomb:
+			m.position = point_shoot.global_position
+			m.transform.basis = global_transform.basis
+			m.rotation.x = camera_angel.x
+			
+			get_tree().get_root().add_child(m)
+			
+			var der = (m.transform.basis * Vector3(0, 0, 1)).normalized() * -10
+			m.apply_central_impulse(der)
 
 func die():
 	var dai_panel = preload("res://scen/Player/dae_panel.tscn").instantiate()

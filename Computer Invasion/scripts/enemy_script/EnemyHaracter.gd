@@ -7,20 +7,21 @@ class_name enemyHaracter
 
 enum State {IDEL, ALERT, ATTACK, SHOOT, DEATH}
 var state : State = State.IDEL
-
+var isDead = false
 var target : Player
 
 func _attack():
-	target.take_damege(damage)
+	target._take_damege(damage)
 
 func _shoot():
 	pass
 
 func _take_damege(dm : int):
 	heal -= dm
-	if heal <= 0:
-		state = State.DEATH
-		_death
+	if heal <= 0 and state != State.DEATH:
+		isDead = true
+		_death()
 		
 func _death():
+	state = State.DEATH
 	queue_free()

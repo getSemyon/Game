@@ -209,6 +209,9 @@ libraries = {
 "": SubResource("AnimationLibrary_fav7x")
 }
 
+[node name="AreaDamage" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
 [connection signal="area_entered" from="Collision_Helper/AreaAttack" to="." method="_on_area_attack_area_entered"]
 [connection signal="area_exited" from="Collision_Helper/AreaAttack" to="." method="_on_area_attack_area_exited"]
 [connection signal="area_entered" from="Collision_Helper/AreaTarget" to="." method="_on_area_target_area_entered"]

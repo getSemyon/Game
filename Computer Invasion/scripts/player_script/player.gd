@@ -69,7 +69,6 @@ const JUMP_VELOCITY = 4.5
 @onready var reys_down_heng = $ReysDownHeng
 @onready var camera = $neck/head/eyse/Camera3D
 @onready var ray_corect = $RayCorect
-@onready var basic_wepon = $basic_wepon
 @onready var ray_interect = $neck/head/eyse/RayInterect
 @onready var pause_menu___setting = $"pause_menu - setting"
 
@@ -82,7 +81,6 @@ func _ready():
 	speed = speed_export
 	
 	point_shoot = $neck/head/eyse/Marker3D
-	scen_point = $basic_wepon
 	
 	player_interface = $PlayerInterface
 	
@@ -116,7 +114,10 @@ func check_input():
 		if wepon_list[wepon_check][0] == "Hook":
 			hook()
 		else:
-			attack()
+			if !isShoot:
+				attack()
+				isShoot = true
+			return
 		
 	if Input.is_action_just_released("shoot") and hooked:
 		hooked = false
@@ -325,6 +326,7 @@ func _physics_process(delta):
 			spin(delta)
 	
 	move_and_slide()
+	isShoot = false
 
 func _on_triger_zone_enter_triger():
 	self.die()
