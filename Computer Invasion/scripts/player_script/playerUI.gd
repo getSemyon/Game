@@ -11,10 +11,10 @@ var slider: SliderJoint3D = null
 @export var speed_export : float
 @export var armor_export : int
 
-var heal : int = heal_export
+var heal : float = heal_export
 var damage : int = damage_export
 var speed : float = speed_export
-var armor : int = armor_export
+var armor : float = armor_export
 
 # atack parametr
 var isShoot = false
@@ -28,7 +28,7 @@ var wepon_list = {
 	1 : ["Blater", false, "res://scen/missile and bomb/missile.tscn"],
 	2 : ["Hook", false],
 	3 : ["Rocket", false, "res://scen/missile and bomb/rocket.tscn"],
-	4 : ["Bomb", true, "res://scen/missile and bomb/bomb.tscn"]
+	4 : ["Bomb", false, "res://scen/missile and bomb/bomb.tscn"]
 }
 var wepon_check : int = 0
 
@@ -53,9 +53,24 @@ var start_dealog = preload("res://dialoge/DialogeGame/StartDealog.gd")
 
 # function
 func _take_damege(damege_enemy : int):
-	print("damege")
-	heal -= damege_enemy
-	player_interface.HealProparti(-damege_enemy)
+	
+	if armor > 0:
+		if armor >= damege_enemy * 0.9:
+			armor -= damege_enemy * 0.9
+			heal -= damege_enemy * 0.1
+			
+			player_interface.ArmorProparti(-damege_enemy * 0.9)
+			player_interface.HealProparti(-damege_enemy * 0.1)
+		else:
+			damege_enemy -= armor
+			armor = 0
+			heal -= damege_enemy
+			
+			player_interface.ArmorProparti(-armor)
+			player_interface.HealProparti(-damege_enemy)
+	else:
+		heal -= damege_enemy
+		player_interface.HealProparti(-damege_enemy)
 	
 	if heal <= 0:
 		die()
@@ -162,6 +177,10 @@ func draw_hook(length: float) -> void:
 	line_helper.look_at(hook_pos, Vector3.UP)
 	line.height = length
 	line.position.z = length / -2
+
+func endGame():
+	var finshPlane = load("res://scen/Player/finish_game.tscn").instantiate()
+	get_parent().add_child(finshPlane)
 
 # Safe and load parametr
 func get_data():

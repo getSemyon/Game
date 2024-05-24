@@ -72,6 +72,7 @@ func _death():
 	area_damage.queue_free()
 	collision_helper.queue_free()
 	partical_dae.emitting = true
+	target.endGame()
 	timer.start()
 
 func _on_timer_timeout():

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/enemy_script/StateChervack.gd" id="2_pprm4"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_n4b3k"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_cxkan"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y58fc"]
@@ -1105,8 +1107,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_uks8f")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_n4b3k"]
-
 [sub_resource type="Curve" id="Curve_hqpcs"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.991304, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -1140,6 +1140,17 @@ script = ExtResource("2_pprm4")
 heal = 10
 damage = 5
 speed = 5
+
+[node name="AreaDamage" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.37095e-08, 0, 0.999961, 0, 0.999994, 0, -0.999957, 0, -4.37097e-08, 0, 0, -1)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaDamage"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -1.42109e-14, 0, 3.5, -4.76837e-07, 0, 1.50006)
+shape = SubResource("SphereShape3D_n4b3k")
 
 [node name="Collision_Helper" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -1333,15 +1344,8 @@ transform = Transform3D(-0.400006, 0, -2.98023e-08, 0, 0.400002, 0, 4.47035e-08,
 mesh = SubResource("ArrayMesh_i6d3o")
 skeleton = NodePath("")
 
-[node name="AreaDamage" type="Area3D" parent="."]
-transform = Transform3D(-4.37095e-08, 0, 0.999961, 0, 0.999994, 0, -0.999957, 0, -4.37097e-08, 0, 0, -1)
-collision_layer = 4
-collision_mask = 0
-monitoring = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaDamage"]
-transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -1.42109e-14, 0, 3.5, -4.76837e-07, 0, 1.50006)
-shape = SubResource("SphereShape3D_n4b3k")
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Collision_Helper/Path3D/PathFollow3D"]
+remote_path = NodePath("../../../../AreaDamage")
 
 [node name="ParticalDae" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

@@ -79,6 +79,7 @@ func _ready():
 	heal = heal_export
 	damage = damage_export
 	speed = speed_export
+	armor = armor_export
 	
 	point_shoot = $neck/head/eyse/Marker3D
 	

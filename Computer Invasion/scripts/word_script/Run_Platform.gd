@@ -8,6 +8,7 @@ class_name RunPlatform
 
 @onready var path_follow_3d = $PathFollow3D
 @onready var animation_player = $AnimationPlayer
+@onready var remote_transform = $PathFollow3D/RemoteTransform3D
 
 func _ready():
 	#animation_player.track_set_path("PathFollow3D:progress_ratio")

@@ -13,11 +13,13 @@ var roundInt : int
 var velosity_in : Vector3 = Vector3(-1, 0,0)
 var velosity_out : Vector3 = Vector3(1, 0,0)
 var progres_old_curve : Vector3
+
 @onready var collision_helper = $Collision_Helper
-@onready var area_damage = $AreaDamage
+@onready var area_damage = %AreaDamage
 
 #bouns param
 @onready var bounds = $Collision_Helper/Bounds
+
 var bound_distnce = 0.1
 var position_holver
 
@@ -43,6 +45,9 @@ func _process(delta):
 		position_holver = head.global_position
 		path_follow.progress += speed * delta
 		
+		#area_damage.position = head.global_position
+		area_damage.global_rotation = head.global_rotation
+
 		if isAttack:
 			if time <= 0:
 				target._take_damege(damage)
@@ -110,6 +115,7 @@ func _harassment(delta):
 func _death():
 	area_damage.queue_free()
 	collision_helper.queue_free()
+	partical_dae.global_position = head.global_position
 	partical_dae.emitting = true
 	timer.start()
 

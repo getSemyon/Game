@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dticwhfd5ucuf"]
+[gd_scene load_steps=9 format=3 uid="uid://dticwhfd5ucuf"]
 
 [ext_resource type="Script" path="res://scripts/word_script/Run_Platform.gd" id="1_40edp"]
+[ext_resource type="Script" path="res://scripts/word_script/AnimatableBodyPlatform.gd" id="2_oba5d"]
 [ext_resource type="PackedScene" uid="uid://unlrh2s0e81g" path="res://model/Woll/wall2.blend" id="2_t6i1r"]
 
 [sub_resource type="Curve3D" id="Curve3D_vyl16"]
@@ -57,24 +58,19 @@ transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
 curve = SubResource("Curve3D_vyl16")
 script = ExtResource("1_40edp")
 
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -30, 9)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="AnimatableBody3D"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_iq8y4")
-
-[node name="wall2" parent="AnimatableBody3D" instance=ExtResource("2_t6i1r")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
-
 [node name="PathFollow3D" type="PathFollow3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -30, 9)
 progress = 23.5372
 rotation_mode = 0
 loop = false
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="PathFollow3D"]
-remote_path = NodePath("../../AnimatableBody3D")
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="PathFollow3D"]
+script = ExtResource("2_oba5d")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PathFollow3D/AnimatableBody3D"]
+shape = SubResource("ConcavePolygonShape3D_iq8y4")
+
+[node name="wall2" parent="PathFollow3D/AnimatableBody3D" instance=ExtResource("2_t6i1r")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

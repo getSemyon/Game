@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://sidsc1updrrd"]
+[gd_scene load_steps=6 format=3 uid="uid://sidsc1updrrd"]
 
 [ext_resource type="Theme" uid="uid://r02ln6x3oqn2" path="res://shader/Theme_game.tres" id="1_po28v"]
 [ext_resource type="Script" path="res://scripts/menu_script/settings.gd" id="1_t1rh2"]
 [ext_resource type="PackedScene" uid="uid://cqvhh7tqvv0fk" path="res://scen/Menu/Settings/saund/sound_ponel.tscn" id="2_puvb1"]
 [ext_resource type="PackedScene" uid="uid://o4td8o3h6vor" path="res://scen/Menu/Settings/Graphics/graphics_panel.tscn" id="2_vwoua"]
 [ext_resource type="PackedScene" uid="uid://dn06y20hlde4v" path="res://scen/Menu/Settings/Controller/controller_panel.tscn" id="3_3kylj"]
-[ext_resource type="AudioStream" uid="uid://b6vjg5n5gip1e" path="res://music and sound/Call to Adventure.mp3" id="6_8fhv2"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -77,11 +76,6 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 theme = ExtResource("1_po28v")
 text = "НАЗАД"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_8fhv2")
-autoplay = true
-bus = &"Music"
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

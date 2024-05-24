@@ -16,10 +16,10 @@ func init_proparti(heal, armor):
 	heal_parametr.init_health(heal)
 	armor_parametr.init_health(armor)
 
-func HealProparti(value : int):
+func HealProparti(value : float):
 	heal_parametr.proparti_value += value
 
-func ArmorProparti(value : int):
+func ArmorProparti(value : float):
 	armor_parametr.proparti_value += value
 	
 func WeponProparti(name : String):

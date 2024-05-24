@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr1fio0lw4l8q"]
+[gd_scene load_steps=4 format=3 uid="uid://dr1fio0lw4l8q"]
 
 [ext_resource type="Script" path="res://scripts/menu_script/menu.gd" id="1_7877k"]
 [ext_resource type="Theme" uid="uid://r02ln6x3oqn2" path="res://shader/Theme_game.tres" id="1_ft6ae"]
+[ext_resource type="AudioStream" uid="uid://bgdvhpbam383t" path="res://music and sound/Andrew Vice - Laserfuture.mp3" id="3_kr2i6"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -48,6 +49,12 @@ text = "Настройки"
 layout_mode = 2
 theme = ExtResource("1_ft6ae")
 text = "Выход"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_kr2i6")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/continion" to="." method="_on_button_2_pressed"]
