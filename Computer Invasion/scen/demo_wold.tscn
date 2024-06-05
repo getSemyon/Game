@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://clnadfclah5jd"]
+[gd_scene load_steps=18 format=3 uid="uid://clnadfclah5jd"]
 
 [ext_resource type="PackedScene" uid="uid://cx0jsy5cbcas1" path="res://scen/world/start_scen_part_1.tscn" id="1_cmidu"]
 [ext_resource type="AudioStream" uid="uid://bgdvhpbam383t" path="res://music and sound/Andrew Vice - Laserfuture.mp3" id="1_xpsvn"]
 [ext_resource type="PackedScene" uid="uid://nx41qrscql5t" path="res://scen/world/start_scen_part_2.tscn" id="2_d24l0"]
+[ext_resource type="PackedScene" uid="uid://cdkyjyeo7qv3n" path="res://model/sun.blend" id="2_snjw0"]
 [ext_resource type="PackedScene" uid="uid://d3ocpnt8v7kyf" path="res://scen/Plane/door.tscn" id="4_n8ioy"]
 [ext_resource type="PackedScene" uid="uid://ktintwnv7nhn" path="res://scen/interacteble_object/button.tscn" id="5_xlrbf"]
 [ext_resource type="PackedScene" uid="uid://db2rs7y6a43sq" path="res://scen/Items_scen/wepon_item.tscn" id="7_srqqf"]
@@ -71,6 +72,9 @@ process_mode = 3
 stream = ExtResource("1_xpsvn")
 autoplay = true
 bus = &"Music"
+
+[node name="sun" parent="World_Disane" instance=ExtResource("2_snjw0")]
+transform = Transform3D(-4.37114e-06, -100, 0, 100, -4.37114e-06, 0, 0, 0, 100, 374.4, 0, 0)
 
 [node name="Items" type="Node3D" parent="."]
 

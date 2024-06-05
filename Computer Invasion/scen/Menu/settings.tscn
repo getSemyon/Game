@@ -29,16 +29,15 @@ theme_override_constants/margin_bottom = 24
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer"]
 layout_mode = 2
-current_tab = 1
 
 [node name="Графика" type="TabBar" parent="MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Graphics_panel" parent="MarginContainer/TabContainer/Графика" instance=ExtResource("2_vwoua")]
 layout_mode = 1
 
 [node name="Звуки" type="TabBar" parent="MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Sound_ponel" parent="MarginContainer/TabContainer/Звуки" instance=ExtResource("2_puvb1")]

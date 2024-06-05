@@ -59,8 +59,7 @@ curve = SubResource("Curve3D_vyl16")
 script = ExtResource("1_40edp")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -30, 9)
-progress = 23.5372
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -30, 4)
 rotation_mode = 0
 loop = false
 

@@ -95,6 +95,10 @@ func _ready():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	SaveLodeMenager.loading()
+	
+	if !isLoding:
+		DialogeState.start()
+		add_child(load("res://dialoge/DialogeGame/start_dealog.tscn").instantiate())
 
 func _input(event):
 	if event is InputEventMouseMotion:

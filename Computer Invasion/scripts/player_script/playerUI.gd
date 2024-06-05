@@ -50,6 +50,7 @@ var line_helper
 var line 
 
 var start_dealog = preload("res://dialoge/DialogeGame/StartDealog.gd")
+var isLoding = false
 
 # function
 func _take_damege(damege_enemy : int):
@@ -203,6 +204,8 @@ func set_data(data : Dictionary):
 	heal = data["heal"]
 	armor = data["armor"]
 	damage = data["damage"]
+	
+	isLoding = true
 
 func Updateinterface():
 	player_interface.ArmorProparti(armor)
